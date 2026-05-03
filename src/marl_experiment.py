@@ -35,7 +35,7 @@ class ClimateMarlExperiment:
         self.action_dim = len(actions_config["action_sizes"])
         self.adaptation_idx = self.action_dim - 1
 
-    def rollout_fixed_actions(self, seed=None):
+    def rollout_fixed_actions(self, max_effort=True, seed=None):
         env = ClimateMARL(
             self.env_config,
             self.emission_data,
@@ -53,12 +53,13 @@ class ClimateMarlExperiment:
         info_dict = {}
 
         base_action = np.zeros(self.action_dim, dtype=np.int64)
-        if "energy" in self.lever_names:
-            energy_idx = self.lever_names.index("energy")
-            energy_levels = self.actions_config["lever_levels"]["energy"]
-            energy_choice = 2 if len(energy_levels) > 1 else 0
-            energy_choice = min(energy_choice, len(energy_levels) - 1)
-            base_action[energy_idx] = energy_choice
+        if max_effort:
+            for j, name in enumerate(self.lever_names):
+                levels = self.actions_config["lever_levels"][name]
+                base_action[j] = len(levels) - 1
+            adaptation_levels = self.actions_config["adaptation_levels"]
+            base_action[self.adaptation_idx] = len(adaptation_levels) - 1
+        # min effort: all indices stay at 0
 
         while not done:
             actions = {agent_id: base_action.copy() for agent_id in obs.keys()}
@@ -339,6 +340,12 @@ class ClimateMarlExperiment:
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--max-effort", action="store_true", help="Run a single max-effort rollout and save results")
+    parser.add_argument("--min-effort", action="store_true", help="Run a single min-effort (no action) rollout and save results")
+    args = parser.parse_args()
+
     marl_config = load_yaml_config("marl.yaml", "marl")
     env_config, emission_data, economics_config, actions_config, training_cfg = load_marl_setup(marl_config)
 
@@ -349,6 +356,25 @@ def main():
         actions_config,
         training_cfg,
     )
+
+    if args.max_effort or args.min_effort:
+        max_effort = args.max_effort
+        label = "max_effort" if max_effort else "min_effort"
+        traj, per_agent_return, total_return, _, _, info_dict = experiment.rollout_fixed_actions(max_effort=max_effort)
+        policy_logger = experiment.print_greedy_summary(traj)
+        results = {
+            "per_agent_return": per_agent_return,
+            "total_return": total_return,
+            "temperature_trajectory": info_dict["country_0"]["Temperature_trajectory"],
+            "policy": policy_logger,
+        }
+        results_dir = Path(env_config["output_dir"])
+        out_file = results_dir / f"{label}_results.json"
+        with open(out_file, "w") as f:
+            json.dump(_to_jsonable(results), f, indent=4)
+        print(f"Saved to {out_file}")
+        return
+
     experiment.run_marl_experiment()
 
 

@@ -88,10 +88,10 @@ class ClimateMARL(MultiAgentEnv):
             self.lever_levels.append(levels)
 
         self.policy_matrix = np.asarray(actions_config["policy_matrix"], dtype=np.float32)
-        if self.policy_matrix.shape != (self.lever_count, self._controllable_gases):
+        if self.policy_matrix.shape != (self.N, self.lever_count, self._controllable_gases):
             raise ValueError(
-                "policy_matrix must have shape (num_levers, num_controlled_gases); "
-                f"got {self.policy_matrix.shape}, expected ({self.lever_count}, {self._controllable_gases})"
+                "policy_matrix must have shape (num_agents, num_levers, num_controlled_gases); "
+                f"got {self.policy_matrix.shape}, expected ({self.N}, {self.lever_count}, {self._controllable_gases})"
             )
 
         self.adaptation_levels = np.asarray(
@@ -312,7 +312,7 @@ class ClimateMARL(MultiAgentEnv):
         baseline_growth_year = self.baseline_emission_growth[idx] # 2016..2050 as baseline growth starts from 2016
         #print(f"Baseline growth year {self.year_idx}: {baseline_growth_year}")
         baseline_growth_per_agent = np.broadcast_to(baseline_growth_year, (self.N, self.G)).copy()
-        delta_growth = lever_efforts @ self.policy_matrix  # (N, controlled_gases)
+        delta_growth = np.einsum('ni,nij->nj', lever_efforts, self.policy_matrix)  # (N, controlled_gases)
         baseline_growth_per_agent[:, self.control_indices] *= (1.0 + delta_growth)
         #print(f"Baseline growth altered with lever efforts: {delta_growth} yielding: {baseline_growth_per_agent}")
         # Emissions actual

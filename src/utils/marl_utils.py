@@ -216,9 +216,10 @@ def load_marl_setup(cfg):
 
     action_sizes.append(int(adaptation_levels.size))
 
+    N = env_config["N"]
     policy_matrix_cfg = actions_cfg.get("policy_matrix", {})
     gas_index = {gas: idx for idx, gas in enumerate(controlled_gases)}
-    policy_matrix = np.zeros((len(lever_names), len(controlled_gases)), dtype=np.float32)
+    policy_matrix = np.zeros((N, len(lever_names), len(controlled_gases)), dtype=np.float32)
 
     for row, lever in enumerate(lever_names):
         mapping = policy_matrix_cfg.get(lever)
@@ -229,7 +230,15 @@ def load_marl_setup(cfg):
                 raise ValueError(
                     f"Gas '{gas}' in policy_matrix[{lever}] is not among controlled gases {controlled_gases}"
                 )
-            policy_matrix[row, gas_index[gas]] = float(coeff)
+            arr = np.asarray(coeff, dtype=np.float32)
+            if arr.ndim == 0:
+                policy_matrix[:, row, gas_index[gas]] = float(coeff)
+            else:
+                if arr.shape != (N,):
+                    raise ValueError(
+                        f"policy_matrix[{lever}][{gas}] must be a scalar or list of length {N}, got shape {arr.shape}"
+                    )
+                policy_matrix[:, row, gas_index[gas]] = arr
 
     per_gas_totals = policy_matrix.sum(axis=0)
     if np.any(per_gas_totals < -0.051):
