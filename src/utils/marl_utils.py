@@ -67,6 +67,7 @@ def load_marl_setup(cfg):
     
     env_config = {
         "N": int(env_cfg["num_agents"]),
+        "country_names": list(env_cfg.get("country_names", [])),
         "engine": general_cfg["climate_engine"],
         "horizon": int(env_cfg["horizon"]),
         "hist_end": int(cicero_cfg["em_data_policy"]),
