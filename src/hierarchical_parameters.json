@@ -1,0 +1,4317 @@
+{
+  "metadata": {
+    "model": "Pan-European Hierarchical CO2 Emissions Model",
+    "countries": [
+      "Austria",
+      "Belgium",
+      "Bulgaria",
+      "Croatia",
+      "Cyprus",
+      "Czechia",
+      "Denmark",
+      "Estonia",
+      "Finland",
+      "France",
+      "Germany",
+      "Greece",
+      "Hungary",
+      "Ireland",
+      "Italy",
+      "Latvia",
+      "Lithuania",
+      "Luxembourg",
+      "Malta",
+      "Netherlands",
+      "Norway",
+      "Poland",
+      "Portugal",
+      "Romania",
+      "Slovenia",
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "United Kingdom"
+    ],
+    "countries_target": [
+      "Austria",
+      "Belgium",
+      "Bulgaria",
+      "Croatia",
+      "Cyprus",
+      "Czechia",
+      "Denmark",
+      "Estonia",
+      "Finland",
+      "France",
+      "Germany",
+      "Greece",
+      "Hungary",
+      "Ireland",
+      "Italy",
+      "Latvia",
+      "Lithuania",
+      "Luxembourg",
+      "Malta",
+      "Netherlands",
+      "Norway",
+      "Poland",
+      "Portugal",
+      "Romania",
+      "Slovakia",
+      "Slovenia",
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "United Kingdom"
+    ],
+    "n_estimated": 29,
+    "n_target": 30,
+    "period": "1990-2021",
+    "n_observations": 837,
+    "dependent_var": "ln(CO2 emissions), MtCO2eq",
+    "specification": "Log-log \u2014 coefficients are elasticities",
+    "estimation": "HC3 robust OLS (Level 1); REML (Level 2); Two-way FE (Level 3)",
+    "min_obs_threshold": 20,
+    "skipped_countries": [],
+    "extreme_coefficient_flags": {
+      "Switzerland": [
+        {
+          "variable": "AgriLand",
+          "coefficient": 8.5737
+        }
+      ]
+    },
+    "policy_actions": {
+      "e": "Energy decarbonisation \u2014 renewable energy share (%)",
+      "m": "Methane abatement \u2014 total methane emissions (MtCO2eq)",
+      "l": "Agricultural land use \u2014 agricultural land area (% total)",
+      "p": "Preventive investment \u2014 gross capital formation (% GDP)"
+    },
+    "notes": {
+      "investment": "Gross capital formation captures all investment including fossil infrastructure, explaining positive CO2 coefficients in some countries. A consistent climate-specific investment indicator is unavailable across all countries in World Bank data.",
+      "methane": "Total methane excluding LULUCF is used to avoid conceptual overlap with the agricultural land variable and to maintain cross-sector coverage.",
+      "small_countries": "Countries with fewer than 20 clean observations are excluded from Level 1 estimation. Their pooled FE elasticities serve as fallback values in the RL environment.",
+      "france_renewables": "France exhibits a positive renewables elasticity (0.140, ns) because approximately 70-75% of electricity is nuclear. Renewable additions displace nuclear rather than fossil fuels, producing no measurable CO2 reduction. Consistent with IEA France energy profiles.",
+      "estonia_renewables": "Estonia exhibits a positive renewables elasticity (0.337, p<0.05) reflecting its historical dependence on oil shale for electricity. During the sample period, renewable expansion coincided with growing industrial output, producing a positive correlation between renewable share and total emissions. This is a structural feature of the Estonian economy, not an estimation error.",
+      "norway_renewables": "Norway exhibits the largest negative renewables elasticity (-1.221, p<0.01) because approximately 90% of electricity is hydropower. Additional renewable capacity directly displaces fossil fuel use in heating and industry.",
+      "switzerland_agriland": "Switzerland exhibits an extreme AgriLand elasticity (8.574) that is likely driven by multicollinearity or very low variation in agricultural land share (~10% of territory). Small absolute changes in land area produce large percentage changes in the log-log specification. This coefficient is flagged as unreliable. Switzerland is retained in the model for pooled estimation but its AgriLand elasticity should not be used for policy inference. The pooled FE estimate serves as fallback.",
+      "pooled_vs_country_heterogeneity": "The pooled FE renewables elasticity is positive (+0.026) while the country-specific OLS mean is negative (-0.181). This divergence occurs because expanding to 29 countries introduces Eastern European economies with high fossil dependency where renewables expansion historically coincided with economic growth. The pooled model masks this heterogeneity. Country-specific estimates remain economically interpretable and are the appropriate inputs for heterogeneous RL agents. This result strengthens the case for the hierarchical approach over a single pooled specification.",
+      "non_significant_coefficients": "Many country-level coefficients are not statistically significant (p > 0.10). This is expected given the limited time series per country (20-32 observations) and the number of regressors. Non-significant coefficients are retained in the model \u2014 they represent the best available point estimate for each country given the available data. The pooled FE estimates serve as a more statistically stable benchmark.",
+      "extreme_coefficients": "Countries with any coefficient exceeding |5.0| in absolute value are flagged in the output. These likely reflect multicollinearity, very low baseline variable variation, or influential outliers in the country-specific time series."
+    }
+  },
+  "country_elasticities": {
+    "Austria": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.3977,
+        "pvalue": 0.0,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.1471,
+        "pvalue": 0.4574,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.6407,
+        "pvalue": 0.3679,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": 0.0333,
+        "pvalue": 0.7016,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Belgium": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.0605,
+        "pvalue": 0.7621,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.1425,
+        "pvalue": 0.8442,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.4002,
+        "pvalue": 0.8635,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.0298,
+        "pvalue": 0.8845,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Bulgaria": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.1441,
+        "pvalue": 0.4163,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.4327,
+        "pvalue": 0.3655,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -1.0317,
+        "pvalue": 0.5104,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.0012,
+        "pvalue": 0.9918,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Croatia": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.2681,
+        "pvalue": 0.0376,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.1552,
+        "pvalue": 0.5281,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.0302,
+        "pvalue": 0.6648,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": 0.0189,
+        "pvalue": 0.8004,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Cyprus": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.0187,
+        "pvalue": 0.1466,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -1.1342,
+        "pvalue": 0.0,
+        "significant": true,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.0426,
+        "pvalue": 0.5348,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": 0.1313,
+        "pvalue": 0.0289,
+        "significant": true,
+        "flagged": false
+      }
+    },
+    "Czechia": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.1807,
+        "pvalue": 0.1,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.6098,
+        "pvalue": 0.1965,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.0177,
+        "pvalue": 0.9108,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.072,
+        "pvalue": 0.4564,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Denmark": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.0173,
+        "pvalue": 0.8474,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.7458,
+        "pvalue": 0.0377,
+        "significant": true,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.0819,
+        "pvalue": 0.8986,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.0602,
+        "pvalue": 0.6597,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Estonia": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": 0.3367,
+        "pvalue": 0.0391,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 1.1714,
+        "pvalue": 0.0,
+        "significant": true,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.0075,
+        "pvalue": 0.948,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": 0.1344,
+        "pvalue": 0.1779,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Finland": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.7659,
+        "pvalue": 0.0032,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.1403,
+        "pvalue": 0.9051,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.7527,
+        "pvalue": 0.0201,
+        "significant": true,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.0745,
+        "pvalue": 0.4892,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "France": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": 0.1397,
+        "pvalue": 0.2475,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.4122,
+        "pvalue": 0.3599,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.7597,
+        "pvalue": 0.823,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": 0.2136,
+        "pvalue": 0.0755,
+        "significant": true,
+        "flagged": false
+      }
+    },
+    "Germany": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.0736,
+        "pvalue": 0.0295,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.3633,
+        "pvalue": 0.0273,
+        "significant": true,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.3193,
+        "pvalue": 0.5376,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.2853,
+        "pvalue": 0.0001,
+        "significant": true,
+        "flagged": false
+      }
+    },
+    "Greece": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.1397,
+        "pvalue": 0.4037,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.5226,
+        "pvalue": 0.5273,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.0251,
+        "pvalue": 0.9449,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.1066,
+        "pvalue": 0.4778,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Hungary": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.1475,
+        "pvalue": 0.0011,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.205,
+        "pvalue": 0.7731,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.1641,
+        "pvalue": 0.5129,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.0233,
+        "pvalue": 0.8003,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Ireland": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.0001,
+        "pvalue": 0.9992,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.2753,
+        "pvalue": 0.2935,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.0524,
+        "pvalue": 0.9487,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": 0.0468,
+        "pvalue": 0.2256,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Italy": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": 0.0689,
+        "pvalue": 0.0737,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.5562,
+        "pvalue": 0.0288,
+        "significant": true,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.0089,
+        "pvalue": 0.9702,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": 0.0859,
+        "pvalue": 0.4755,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Latvia": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.4675,
+        "pvalue": 0.0,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.2362,
+        "pvalue": 0.1154,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.2226,
+        "pvalue": 0.1703,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.0231,
+        "pvalue": 0.7452,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Lithuania": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.6094,
+        "pvalue": 0.0012,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.3391,
+        "pvalue": 0.2882,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.4986,
+        "pvalue": 0.0415,
+        "significant": true,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": 0.2042,
+        "pvalue": 0.3534,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Luxembourg": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.0035,
+        "pvalue": 0.8316,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.0552,
+        "pvalue": 0.7988,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.6829,
+        "pvalue": 0.5277,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.0237,
+        "pvalue": 0.6484,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Malta": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.0355,
+        "pvalue": 0.6294,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.0744,
+        "pvalue": 0.7789,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.1336,
+        "pvalue": 0.8516,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.1534,
+        "pvalue": 0.2182,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Netherlands": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": 0.0116,
+        "pvalue": 0.8395,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.4481,
+        "pvalue": 0.0247,
+        "significant": true,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.0578,
+        "pvalue": 0.8998,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.0755,
+        "pvalue": 0.424,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Norway": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -1.2214,
+        "pvalue": 0.008,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.3121,
+        "pvalue": 0.1284,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.0447,
+        "pvalue": 0.8839,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": 0.1505,
+        "pvalue": 0.2394,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Poland": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.1363,
+        "pvalue": 0.099,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.1507,
+        "pvalue": 0.3864,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.2933,
+        "pvalue": 0.0908,
+        "significant": true,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.0091,
+        "pvalue": 0.8924,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Portugal": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.23,
+        "pvalue": 0.0006,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.2063,
+        "pvalue": 0.6303,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": -0.4857,
+        "pvalue": 0.1346,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.1465,
+        "pvalue": 0.1614,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Romania": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.0403,
+        "pvalue": 0.3878,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.2559,
+        "pvalue": 0.3536,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.4566,
+        "pvalue": 0.3744,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": 0.1286,
+        "pvalue": 0.1608,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Slovenia": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.056,
+        "pvalue": 0.4353,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.246,
+        "pvalue": 0.3783,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.0046,
+        "pvalue": 0.976,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.1048,
+        "pvalue": 0.68,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Spain": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.144,
+        "pvalue": 0.0484,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.2956,
+        "pvalue": 0.4028,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.0543,
+        "pvalue": 0.9496,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": 0.2142,
+        "pvalue": 0.2494,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Sweden": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.5044,
+        "pvalue": 0.0025,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": 0.0244,
+        "pvalue": 0.9678,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.0079,
+        "pvalue": 0.9791,
+        "significant": false,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.2888,
+        "pvalue": 0.194,
+        "significant": false,
+        "flagged": false
+      }
+    },
+    "Switzerland": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.0358,
+        "pvalue": 0.8468,
+        "significant": false,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -0.0429,
+        "pvalue": 0.8527,
+        "significant": false,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 8.5737,
+        "pvalue": 0.3735,
+        "significant": false,
+        "flagged": true
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.2216,
+        "pvalue": 0.0688,
+        "significant": true,
+        "flagged": false
+      }
+    },
+    "United Kingdom": {
+      "e": {
+        "variable": "Renewables",
+        "label": "Energy decarbonisation",
+        "elasticity": -0.1075,
+        "pvalue": 0.002,
+        "significant": true,
+        "flagged": false
+      },
+      "m": {
+        "variable": "Methane",
+        "label": "Methane abatement",
+        "elasticity": -1.0751,
+        "pvalue": 0.0022,
+        "significant": true,
+        "flagged": false
+      },
+      "l": {
+        "variable": "AgriLand",
+        "label": "Agricultural land use",
+        "elasticity": 0.962,
+        "pvalue": 0.0145,
+        "significant": true,
+        "flagged": false
+      },
+      "p": {
+        "variable": "Investment",
+        "label": "Preventive investment",
+        "elasticity": -0.0481,
+        "pvalue": 0.7662,
+        "significant": false,
+        "flagged": false
+      }
+    }
+  },
+  "country_intercepts": {
+    "Austria": 2.2437,
+    "Belgium": -18.3134,
+    "Bulgaria": -11.5542,
+    "Croatia": 14.222,
+    "Cyprus": -31.5361,
+    "Czechia": 16.4374,
+    "Denmark": 3.7516,
+    "Estonia": -4.3358,
+    "Finland": 23.2848,
+    "France": -8.2673,
+    "Germany": 5.3685,
+    "Greece": -16.3406,
+    "Hungary": -4.1834,
+    "Ireland": -55.756,
+    "Italy": -2.5085,
+    "Latvia": 10.0456,
+    "Lithuania": 28.7341,
+    "Luxembourg": 9.5744,
+    "Malta": -98.7149,
+    "Netherlands": -8.0732,
+    "Norway": -14.4106,
+    "Poland": 5.2633,
+    "Portugal": -1.5901,
+    "Romania": -3.8372,
+    "Slovenia": -8.7932,
+    "Spain": -60.5082,
+    "Sweden": 17.117,
+    "Switzerland": -31.7034,
+    "United Kingdom": 2.1854
+  },
+  "country_all_coefficients": {
+    "Austria": {
+      "Renewables": {
+        "coefficient": -0.3977,
+        "pvalue": 0.0
+      },
+      "Methane": {
+        "coefficient": 0.1471,
+        "pvalue": 0.4574
+      },
+      "AgriLand": {
+        "coefficient": -0.6407,
+        "pvalue": 0.3679
+      },
+      "Investment": {
+        "coefficient": 0.0333,
+        "pvalue": 0.7016
+      },
+      "GDP_PC": {
+        "coefficient": 0.2245,
+        "pvalue": 0.0377
+      },
+      "EnergyPC": {
+        "coefficient": 0.9093,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": 0.0474,
+        "pvalue": 0.7939
+      },
+      "Urban": {
+        "coefficient": -1.1594,
+        "pvalue": 0.093
+      },
+      "trend": {
+        "coefficient": 0.0019,
+        "pvalue": 0.752
+      }
+    },
+    "Belgium": {
+      "Renewables": {
+        "coefficient": -0.0605,
+        "pvalue": 0.7621
+      },
+      "Methane": {
+        "coefficient": 0.1425,
+        "pvalue": 0.8442
+      },
+      "AgriLand": {
+        "coefficient": -0.4002,
+        "pvalue": 0.8635
+      },
+      "Investment": {
+        "coefficient": -0.0298,
+        "pvalue": 0.8845
+      },
+      "GDP_PC": {
+        "coefficient": -0.1253,
+        "pvalue": 0.9018
+      },
+      "EnergyPC": {
+        "coefficient": 0.6959,
+        "pvalue": 0.0669
+      },
+      "Industry": {
+        "coefficient": 0.2921,
+        "pvalue": 0.769
+      },
+      "Urban": {
+        "coefficient": 4.2481,
+        "pvalue": 0.8784
+      },
+      "trend": {
+        "coefficient": -0.0068,
+        "pvalue": 0.9011
+      }
+    },
+    "Bulgaria": {
+      "Renewables": {
+        "coefficient": -0.1441,
+        "pvalue": 0.4163
+      },
+      "Methane": {
+        "coefficient": 0.4327,
+        "pvalue": 0.3655
+      },
+      "AgriLand": {
+        "coefficient": -1.0317,
+        "pvalue": 0.5104
+      },
+      "Investment": {
+        "coefficient": -0.0012,
+        "pvalue": 0.9918
+      },
+      "GDP_PC": {
+        "coefficient": -0.0441,
+        "pvalue": 0.8901
+      },
+      "EnergyPC": {
+        "coefficient": 0.6244,
+        "pvalue": 0.0041
+      },
+      "Industry": {
+        "coefficient": -0.1284,
+        "pvalue": 0.7185
+      },
+      "Urban": {
+        "coefficient": 3.4747,
+        "pvalue": 0.3848
+      },
+      "trend": {
+        "coefficient": -0.0171,
+        "pvalue": 0.3197
+      }
+    },
+    "Croatia": {
+      "Renewables": {
+        "coefficient": -0.2681,
+        "pvalue": 0.0376
+      },
+      "Methane": {
+        "coefficient": -0.1552,
+        "pvalue": 0.5281
+      },
+      "AgriLand": {
+        "coefficient": -0.0302,
+        "pvalue": 0.6648
+      },
+      "Investment": {
+        "coefficient": 0.0189,
+        "pvalue": 0.8004
+      },
+      "GDP_PC": {
+        "coefficient": -0.0413,
+        "pvalue": 0.8544
+      },
+      "EnergyPC": {
+        "coefficient": 1.0409,
+        "pvalue": 0.0022
+      },
+      "Industry": {
+        "coefficient": -0.0127,
+        "pvalue": 0.9607
+      },
+      "Urban": {
+        "coefficient": -4.3798,
+        "pvalue": 0.0016
+      },
+      "trend": {
+        "coefficient": -0.0031,
+        "pvalue": 0.6648
+      }
+    },
+    "Cyprus": {
+      "Renewables": {
+        "coefficient": -0.0187,
+        "pvalue": 0.1466
+      },
+      "Methane": {
+        "coefficient": -1.1342,
+        "pvalue": 0.0
+      },
+      "AgriLand": {
+        "coefficient": 0.0426,
+        "pvalue": 0.5348
+      },
+      "Investment": {
+        "coefficient": 0.1313,
+        "pvalue": 0.0289
+      },
+      "GDP_PC": {
+        "coefficient": -0.049,
+        "pvalue": 0.8221
+      },
+      "EnergyPC": {
+        "coefficient": 0.6037,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": -0.1165,
+        "pvalue": 0.3814
+      },
+      "Urban": {
+        "coefficient": 6.8949,
+        "pvalue": 0.0012
+      },
+      "trend": {
+        "coefficient": 0.0353,
+        "pvalue": 0.0001
+      }
+    },
+    "Czechia": {
+      "Renewables": {
+        "coefficient": -0.1807,
+        "pvalue": 0.1
+      },
+      "Methane": {
+        "coefficient": 0.6098,
+        "pvalue": 0.1965
+      },
+      "AgriLand": {
+        "coefficient": -0.0177,
+        "pvalue": 0.9108
+      },
+      "Investment": {
+        "coefficient": -0.072,
+        "pvalue": 0.4564
+      },
+      "GDP_PC": {
+        "coefficient": 0.308,
+        "pvalue": 0.1329
+      },
+      "EnergyPC": {
+        "coefficient": 0.3151,
+        "pvalue": 0.2012
+      },
+      "Industry": {
+        "coefficient": 0.2619,
+        "pvalue": 0.1674
+      },
+      "Urban": {
+        "coefficient": -4.4358,
+        "pvalue": 0.466
+      },
+      "trend": {
+        "coefficient": -0.01,
+        "pvalue": 0.4375
+      }
+    },
+    "Denmark": {
+      "Renewables": {
+        "coefficient": -0.0173,
+        "pvalue": 0.8474
+      },
+      "Methane": {
+        "coefficient": -0.7458,
+        "pvalue": 0.0377
+      },
+      "AgriLand": {
+        "coefficient": 0.0819,
+        "pvalue": 0.8986
+      },
+      "Investment": {
+        "coefficient": -0.0602,
+        "pvalue": 0.6597
+      },
+      "GDP_PC": {
+        "coefficient": -0.3849,
+        "pvalue": 0.5177
+      },
+      "EnergyPC": {
+        "coefficient": 1.7653,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": 0.1596,
+        "pvalue": 0.6209
+      },
+      "Urban": {
+        "coefficient": -2.0223,
+        "pvalue": 0.6411
+      },
+      "trend": {
+        "coefficient": 0.0001,
+        "pvalue": 0.9952
+      }
+    },
+    "Estonia": {
+      "Renewables": {
+        "coefficient": 0.3367,
+        "pvalue": 0.0391
+      },
+      "Methane": {
+        "coefficient": 1.1714,
+        "pvalue": 0.0
+      },
+      "AgriLand": {
+        "coefficient": -0.0075,
+        "pvalue": 0.948
+      },
+      "Investment": {
+        "coefficient": 0.1344,
+        "pvalue": 0.1779
+      },
+      "GDP_PC": {
+        "coefficient": 0.1372,
+        "pvalue": 0.5463
+      },
+      "EnergyPC": {
+        "coefficient": 0.4685,
+        "pvalue": 0.0005
+      },
+      "Industry": {
+        "coefficient": 0.8902,
+        "pvalue": 0.0036
+      },
+      "Urban": {
+        "coefficient": -0.7801,
+        "pvalue": 0.6641
+      },
+      "trend": {
+        "coefficient": -0.0114,
+        "pvalue": 0.3735
+      }
+    },
+    "Finland": {
+      "Renewables": {
+        "coefficient": -0.7659,
+        "pvalue": 0.0032
+      },
+      "Methane": {
+        "coefficient": -0.1403,
+        "pvalue": 0.9051
+      },
+      "AgriLand": {
+        "coefficient": -0.7527,
+        "pvalue": 0.0201
+      },
+      "Investment": {
+        "coefficient": -0.0745,
+        "pvalue": 0.4892
+      },
+      "GDP_PC": {
+        "coefficient": 0.1531,
+        "pvalue": 0.517
+      },
+      "EnergyPC": {
+        "coefficient": 1.3451,
+        "pvalue": 0.0012
+      },
+      "Industry": {
+        "coefficient": -0.0301,
+        "pvalue": 0.8198
+      },
+      "Urban": {
+        "coefficient": -6.5768,
+        "pvalue": 0.0739
+      },
+      "trend": {
+        "coefficient": 0.0295,
+        "pvalue": 0.0091
+      }
+    },
+    "France": {
+      "Renewables": {
+        "coefficient": 0.1397,
+        "pvalue": 0.2475
+      },
+      "Methane": {
+        "coefficient": -0.4122,
+        "pvalue": 0.3599
+      },
+      "AgriLand": {
+        "coefficient": -0.7597,
+        "pvalue": 0.823
+      },
+      "Investment": {
+        "coefficient": 0.2136,
+        "pvalue": 0.0755
+      },
+      "GDP_PC": {
+        "coefficient": 0.3878,
+        "pvalue": 0.3098
+      },
+      "EnergyPC": {
+        "coefficient": 0.997,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": -0.5078,
+        "pvalue": 0.2291
+      },
+      "Urban": {
+        "coefficient": 1.665,
+        "pvalue": 0.3291
+      },
+      "trend": {
+        "coefficient": -0.0235,
+        "pvalue": 0.2192
+      }
+    },
+    "Germany": {
+      "Renewables": {
+        "coefficient": -0.0736,
+        "pvalue": 0.0295
+      },
+      "Methane": {
+        "coefficient": 0.3633,
+        "pvalue": 0.0273
+      },
+      "AgriLand": {
+        "coefficient": 0.3193,
+        "pvalue": 0.5376
+      },
+      "Investment": {
+        "coefficient": -0.2853,
+        "pvalue": 0.0001
+      },
+      "GDP_PC": {
+        "coefficient": 0.4542,
+        "pvalue": 0.0732
+      },
+      "EnergyPC": {
+        "coefficient": 0.8583,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": 0.2921,
+        "pvalue": 0.0799
+      },
+      "Urban": {
+        "coefficient": -3.0396,
+        "pvalue": 0.3214
+      },
+      "trend": {
+        "coefficient": 0.0072,
+        "pvalue": 0.2425
+      }
+    },
+    "Greece": {
+      "Renewables": {
+        "coefficient": -0.1397,
+        "pvalue": 0.4037
+      },
+      "Methane": {
+        "coefficient": 0.5226,
+        "pvalue": 0.5273
+      },
+      "AgriLand": {
+        "coefficient": -0.0251,
+        "pvalue": 0.9449
+      },
+      "Investment": {
+        "coefficient": -0.1066,
+        "pvalue": 0.4778
+      },
+      "GDP_PC": {
+        "coefficient": 0.0851,
+        "pvalue": 0.8449
+      },
+      "EnergyPC": {
+        "coefficient": 0.9764,
+        "pvalue": 0.1465
+      },
+      "Industry": {
+        "coefficient": 0.1803,
+        "pvalue": 0.3303
+      },
+      "Urban": {
+        "coefficient": 2.6147,
+        "pvalue": 0.5225
+      },
+      "trend": {
+        "coefficient": -0.014,
+        "pvalue": 0.3787
+      }
+    },
+    "Hungary": {
+      "Renewables": {
+        "coefficient": -0.1475,
+        "pvalue": 0.0011
+      },
+      "Methane": {
+        "coefficient": -0.205,
+        "pvalue": 0.7731
+      },
+      "AgriLand": {
+        "coefficient": 0.1641,
+        "pvalue": 0.5129
+      },
+      "Investment": {
+        "coefficient": -0.0233,
+        "pvalue": 0.8003
+      },
+      "GDP_PC": {
+        "coefficient": 0.0155,
+        "pvalue": 0.9538
+      },
+      "EnergyPC": {
+        "coefficient": 1.0362,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": 0.0064,
+        "pvalue": 0.9747
+      },
+      "Urban": {
+        "coefficient": 0.0285,
+        "pvalue": 0.9775
+      },
+      "trend": {
+        "coefficient": -0.0064,
+        "pvalue": 0.4219
+      }
+    },
+    "Ireland": {
+      "Renewables": {
+        "coefficient": -0.0001,
+        "pvalue": 0.9992
+      },
+      "Methane": {
+        "coefficient": 0.2753,
+        "pvalue": 0.2935
+      },
+      "AgriLand": {
+        "coefficient": -0.0524,
+        "pvalue": 0.9487
+      },
+      "Investment": {
+        "coefficient": 0.0468,
+        "pvalue": 0.2256
+      },
+      "GDP_PC": {
+        "coefficient": 0.3256,
+        "pvalue": 0.327
+      },
+      "EnergyPC": {
+        "coefficient": 0.6227,
+        "pvalue": 0.1211
+      },
+      "Industry": {
+        "coefficient": -0.0136,
+        "pvalue": 0.9252
+      },
+      "Urban": {
+        "coefficient": 12.2455,
+        "pvalue": 0.0149
+      },
+      "trend": {
+        "coefficient": -0.0553,
+        "pvalue": 0.0921
+      }
+    },
+    "Italy": {
+      "Renewables": {
+        "coefficient": 0.0689,
+        "pvalue": 0.0737
+      },
+      "Methane": {
+        "coefficient": -0.5562,
+        "pvalue": 0.0288
+      },
+      "AgriLand": {
+        "coefficient": -0.0089,
+        "pvalue": 0.9702
+      },
+      "Investment": {
+        "coefficient": 0.0859,
+        "pvalue": 0.4755
+      },
+      "GDP_PC": {
+        "coefficient": -0.0177,
+        "pvalue": 0.954
+      },
+      "EnergyPC": {
+        "coefficient": 1.3019,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": -0.1008,
+        "pvalue": 0.5382
+      },
+      "Urban": {
+        "coefficient": 0.1223,
+        "pvalue": 0.9642
+      },
+      "trend": {
+        "coefficient": -0.0113,
+        "pvalue": 0.0001
+      }
+    },
+    "Latvia": {
+      "Renewables": {
+        "coefficient": -0.4675,
+        "pvalue": 0.0
+      },
+      "Methane": {
+        "coefficient": -0.2362,
+        "pvalue": 0.1154
+      },
+      "AgriLand": {
+        "coefficient": 0.2226,
+        "pvalue": 0.1703
+      },
+      "Investment": {
+        "coefficient": -0.0231,
+        "pvalue": 0.7452
+      },
+      "GDP_PC": {
+        "coefficient": -0.1954,
+        "pvalue": 0.1585
+      },
+      "EnergyPC": {
+        "coefficient": 1.0766,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": 0.2503,
+        "pvalue": 0.0998
+      },
+      "Urban": {
+        "coefficient": -3.3002,
+        "pvalue": 0.2392
+      },
+      "trend": {
+        "coefficient": -0.004,
+        "pvalue": 0.5512
+      }
+    },
+    "Lithuania": {
+      "Renewables": {
+        "coefficient": -0.6094,
+        "pvalue": 0.0012
+      },
+      "Methane": {
+        "coefficient": 0.3391,
+        "pvalue": 0.2882
+      },
+      "AgriLand": {
+        "coefficient": 0.4986,
+        "pvalue": 0.0415
+      },
+      "Investment": {
+        "coefficient": 0.2042,
+        "pvalue": 0.3534
+      },
+      "GDP_PC": {
+        "coefficient": -0.5356,
+        "pvalue": 0.2611
+      },
+      "EnergyPC": {
+        "coefficient": 0.4411,
+        "pvalue": 0.0822
+      },
+      "Industry": {
+        "coefficient": -0.068,
+        "pvalue": 0.8905
+      },
+      "Urban": {
+        "coefficient": -6.1246,
+        "pvalue": 0.0879
+      },
+      "trend": {
+        "coefficient": 0.0597,
+        "pvalue": 0.0309
+      }
+    },
+    "Luxembourg": {
+      "Renewables": {
+        "coefficient": -0.0035,
+        "pvalue": 0.8316
+      },
+      "Methane": {
+        "coefficient": -0.0552,
+        "pvalue": 0.7988
+      },
+      "AgriLand": {
+        "coefficient": -0.6829,
+        "pvalue": 0.5277
+      },
+      "Investment": {
+        "coefficient": -0.0237,
+        "pvalue": 0.6484
+      },
+      "GDP_PC": {
+        "coefficient": -0.1994,
+        "pvalue": 0.3088
+      },
+      "EnergyPC": {
+        "coefficient": 1.158,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": 0.0044,
+        "pvalue": 0.9597
+      },
+      "Urban": {
+        "coefficient": -2.8374,
+        "pvalue": 0.3171
+      },
+      "trend": {
+        "coefficient": 0.0333,
+        "pvalue": 0.0313
+      }
+    },
+    "Malta": {
+      "Renewables": {
+        "coefficient": -0.0355,
+        "pvalue": 0.6294
+      },
+      "Methane": {
+        "coefficient": -0.0744,
+        "pvalue": 0.7789
+      },
+      "AgriLand": {
+        "coefficient": 0.1336,
+        "pvalue": 0.8516
+      },
+      "Investment": {
+        "coefficient": -0.1534,
+        "pvalue": 0.2182
+      },
+      "GDP_PC": {
+        "coefficient": -0.4092,
+        "pvalue": 0.5278
+      },
+      "EnergyPC": {
+        "coefficient": 1.1623,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": -0.1674,
+        "pvalue": 0.7633
+      },
+      "Urban": {
+        "coefficient": 20.9614,
+        "pvalue": 0.4646
+      },
+      "trend": {
+        "coefficient": -0.0064,
+        "pvalue": 0.8793
+      }
+    },
+    "Netherlands": {
+      "Renewables": {
+        "coefficient": 0.0116,
+        "pvalue": 0.8395
+      },
+      "Methane": {
+        "coefficient": 0.4481,
+        "pvalue": 0.0247
+      },
+      "AgriLand": {
+        "coefficient": 0.0578,
+        "pvalue": 0.8998
+      },
+      "Investment": {
+        "coefficient": -0.0755,
+        "pvalue": 0.424
+      },
+      "GDP_PC": {
+        "coefficient": 0.315,
+        "pvalue": 0.3492
+      },
+      "EnergyPC": {
+        "coefficient": 1.0305,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": -0.2118,
+        "pvalue": 0.2792
+      },
+      "Urban": {
+        "coefficient": 0.0805,
+        "pvalue": 0.8881
+      },
+      "trend": {
+        "coefficient": 0.0024,
+        "pvalue": 0.7357
+      }
+    },
+    "Norway": {
+      "Renewables": {
+        "coefficient": -1.2214,
+        "pvalue": 0.008
+      },
+      "Methane": {
+        "coefficient": -0.3121,
+        "pvalue": 0.1284
+      },
+      "AgriLand": {
+        "coefficient": 0.0447,
+        "pvalue": 0.8839
+      },
+      "Investment": {
+        "coefficient": 0.1505,
+        "pvalue": 0.2394
+      },
+      "GDP_PC": {
+        "coefficient": 0.4624,
+        "pvalue": 0.2901
+      },
+      "EnergyPC": {
+        "coefficient": 0.2279,
+        "pvalue": 0.0687
+      },
+      "Industry": {
+        "coefficient": -0.0484,
+        "pvalue": 0.7869
+      },
+      "Urban": {
+        "coefficient": 3.7606,
+        "pvalue": 0.4259
+      },
+      "trend": {
+        "coefficient": -0.0157,
+        "pvalue": 0.4021
+      }
+    },
+    "Poland": {
+      "Renewables": {
+        "coefficient": -0.1363,
+        "pvalue": 0.099
+      },
+      "Methane": {
+        "coefficient": 0.1507,
+        "pvalue": 0.3864
+      },
+      "AgriLand": {
+        "coefficient": -0.2933,
+        "pvalue": 0.0908
+      },
+      "Investment": {
+        "coefficient": -0.0091,
+        "pvalue": 0.8924
+      },
+      "GDP_PC": {
+        "coefficient": 0.2286,
+        "pvalue": 0.646
+      },
+      "EnergyPC": {
+        "coefficient": 0.7189,
+        "pvalue": 0.0001
+      },
+      "Industry": {
+        "coefficient": 0.0569,
+        "pvalue": 0.6581
+      },
+      "Urban": {
+        "coefficient": -1.5861,
+        "pvalue": 0.6329
+      },
+      "trend": {
+        "coefficient": -0.0119,
+        "pvalue": 0.4773
+      }
+    },
+    "Portugal": {
+      "Renewables": {
+        "coefficient": -0.23,
+        "pvalue": 0.0006
+      },
+      "Methane": {
+        "coefficient": -0.2063,
+        "pvalue": 0.6303
+      },
+      "AgriLand": {
+        "coefficient": -0.4857,
+        "pvalue": 0.1346
+      },
+      "Investment": {
+        "coefficient": -0.1465,
+        "pvalue": 0.1614
+      },
+      "GDP_PC": {
+        "coefficient": 0.1097,
+        "pvalue": 0.8189
+      },
+      "EnergyPC": {
+        "coefficient": 1.4036,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": -0.0968,
+        "pvalue": 0.8762
+      },
+      "Urban": {
+        "coefficient": -0.6149,
+        "pvalue": 0.5491
+      },
+      "trend": {
+        "coefficient": -0.0039,
+        "pvalue": 0.4311
+      }
+    },
+    "Romania": {
+      "Renewables": {
+        "coefficient": -0.0403,
+        "pvalue": 0.3878
+      },
+      "Methane": {
+        "coefficient": -0.2559,
+        "pvalue": 0.3536
+      },
+      "AgriLand": {
+        "coefficient": 0.4566,
+        "pvalue": 0.3744
+      },
+      "Investment": {
+        "coefficient": 0.1286,
+        "pvalue": 0.1608
+      },
+      "GDP_PC": {
+        "coefficient": 0.232,
+        "pvalue": 0.311
+      },
+      "EnergyPC": {
+        "coefficient": 0.972,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": -0.2084,
+        "pvalue": 0.2808
+      },
+      "Urban": {
+        "coefficient": -0.3841,
+        "pvalue": 0.7877
+      },
+      "trend": {
+        "coefficient": -0.0243,
+        "pvalue": 0.0316
+      }
+    },
+    "Slovenia": {
+      "Renewables": {
+        "coefficient": -0.056,
+        "pvalue": 0.4353
+      },
+      "Methane": {
+        "coefficient": 0.246,
+        "pvalue": 0.3783
+      },
+      "AgriLand": {
+        "coefficient": 0.0046,
+        "pvalue": 0.976
+      },
+      "Investment": {
+        "coefficient": -0.1048,
+        "pvalue": 0.68
+      },
+      "GDP_PC": {
+        "coefficient": 0.3342,
+        "pvalue": 0.6184
+      },
+      "EnergyPC": {
+        "coefficient": 0.9118,
+        "pvalue": 0.0036
+      },
+      "Industry": {
+        "coefficient": -0.0437,
+        "pvalue": 0.918
+      },
+      "Urban": {
+        "coefficient": 0.3015,
+        "pvalue": 0.4898
+      },
+      "trend": {
+        "coefficient": -0.0111,
+        "pvalue": 0.5604
+      }
+    },
+    "Spain": {
+      "Renewables": {
+        "coefficient": -0.144,
+        "pvalue": 0.0484
+      },
+      "Methane": {
+        "coefficient": 0.2956,
+        "pvalue": 0.4028
+      },
+      "AgriLand": {
+        "coefficient": 0.0543,
+        "pvalue": 0.9496
+      },
+      "Investment": {
+        "coefficient": 0.2142,
+        "pvalue": 0.2494
+      },
+      "GDP_PC": {
+        "coefficient": -0.067,
+        "pvalue": 0.7792
+      },
+      "EnergyPC": {
+        "coefficient": 1.1237,
+        "pvalue": 0.0
+      },
+      "Industry": {
+        "coefficient": -0.4539,
+        "pvalue": 0.3104
+      },
+      "Urban": {
+        "coefficient": 13.277,
+        "pvalue": 0.0
+      },
+      "trend": {
+        "coefficient": -0.0311,
+        "pvalue": 0.0015
+      }
+    },
+    "Sweden": {
+      "Renewables": {
+        "coefficient": -0.5044,
+        "pvalue": 0.0025
+      },
+      "Methane": {
+        "coefficient": 0.0244,
+        "pvalue": 0.9678
+      },
+      "AgriLand": {
+        "coefficient": 0.0079,
+        "pvalue": 0.9791
+      },
+      "Investment": {
+        "coefficient": -0.2888,
+        "pvalue": 0.194
+      },
+      "GDP_PC": {
+        "coefficient": -0.0908,
+        "pvalue": 0.8669
+      },
+      "EnergyPC": {
+        "coefficient": -0.125,
+        "pvalue": 0.6603
+      },
+      "Industry": {
+        "coefficient": 0.9809,
+        "pvalue": 0.0262
+      },
+      "Urban": {
+        "coefficient": -2.5973,
+        "pvalue": 0.58
+      },
+      "trend": {
+        "coefficient": 0.0053,
+        "pvalue": 0.7688
+      }
+    },
+    "Switzerland": {
+      "Renewables": {
+        "coefficient": -0.0358,
+        "pvalue": 0.8468
+      },
+      "Methane": {
+        "coefficient": -0.0429,
+        "pvalue": 0.8527
+      },
+      "AgriLand": {
+        "coefficient": 8.5737,
+        "pvalue": 0.3735
+      },
+      "Investment": {
+        "coefficient": -0.2216,
+        "pvalue": 0.0688
+      },
+      "GDP_PC": {
+        "coefficient": 0.1154,
+        "pvalue": 0.7176
+      },
+      "EnergyPC": {
+        "coefficient": 0.628,
+        "pvalue": 0.0003
+      },
+      "Industry": {
+        "coefficient": 0.0324,
+        "pvalue": 0.9035
+      },
+      "Urban": {
+        "coefficient": -0.3608,
+        "pvalue": 0.3172
+      },
+      "trend": {
+        "coefficient": 0.0183,
+        "pvalue": 0.3521
+      }
+    },
+    "United Kingdom": {
+      "Renewables": {
+        "coefficient": -0.1075,
+        "pvalue": 0.002
+      },
+      "Methane": {
+        "coefficient": -1.0751,
+        "pvalue": 0.0022
+      },
+      "AgriLand": {
+        "coefficient": 0.962,
+        "pvalue": 0.0145
+      },
+      "Investment": {
+        "coefficient": -0.0481,
+        "pvalue": 0.7662
+      },
+      "GDP_PC": {
+        "coefficient": 0.1347,
+        "pvalue": 0.592
+      },
+      "EnergyPC": {
+        "coefficient": 0.9688,
+        "pvalue": 0.0019
+      },
+      "Industry": {
+        "coefficient": -0.166,
+        "pvalue": 0.6759
+      },
+      "Urban": {
+        "coefficient": -0.8481,
+        "pvalue": 0.9141
+      },
+      "trend": {
+        "coefficient": -0.0256,
+        "pvalue": 0.3306
+      }
+    }
+  },
+  "pooled_fe_elasticities": {
+    "e": {
+      "variable": "Renewables",
+      "label": "Energy decarbonisation",
+      "elasticity": 0.0256,
+      "pvalue": 0.0178
+    },
+    "m": {
+      "variable": "Methane",
+      "label": "Methane abatement",
+      "elasticity": 0.2385,
+      "pvalue": 0.0
+    },
+    "l": {
+      "variable": "AgriLand",
+      "label": "Agricultural land use",
+      "elasticity": 0.0698,
+      "pvalue": 0.0941
+    },
+    "p": {
+      "variable": "Investment",
+      "label": "Preventive investment",
+      "elasticity": 0.0101,
+      "pvalue": 0.6707
+    }
+  },
+  "random_intercepts": {
+    "Germany": 1.9333,
+    "Italy": 1.7561,
+    "United Kingdom": 1.5871,
+    "Poland": 1.4995,
+    "Spain": 1.3638,
+    "France": 1.1172,
+    "Romania": 0.9194,
+    "Greece": 0.5579,
+    "Netherlands": 0.4945,
+    "Portugal": 0.323,
+    "Czechia": 0.317,
+    "Hungary": 0.0682,
+    "Belgium": 0.0656,
+    "Austria": 0.0521,
+    "Bulgaria": 0.0066,
+    "Switzerland": -0.0948,
+    "Denmark": -0.2622,
+    "Ireland": -0.3621,
+    "Croatia": -0.3936,
+    "Finland": -0.5972,
+    "Sweden": -0.6101,
+    "Norway": -0.7023,
+    "Cyprus": -0.9902,
+    "Estonia": -1.0114,
+    "Slovenia": -1.013,
+    "Lithuania": -1.0776,
+    "Latvia": -1.2364,
+    "Malta": -1.7814,
+    "Luxembourg": -1.9294
+  },
+  "co2_baselines": {
+    "Austria": {
+      "mean_MtCO2eq": 69.08,
+      "value_2021_MtCO2eq": 66.2
+    },
+    "Belgium": {
+      "mean_MtCO2eq": 113.0,
+      "value_2021_MtCO2eq": 96.02
+    },
+    "Bulgaria": {
+      "mean_MtCO2eq": 53.25,
+      "value_2021_MtCO2eq": 45.87
+    },
+    "Croatia": {
+      "mean_MtCO2eq": 19.55,
+      "value_2021_MtCO2eq": 17.51
+    },
+    "Cyprus": {
+      "mean_MtCO2eq": 6.95,
+      "value_2021_MtCO2eq": 6.92
+    },
+    "Czechia": {
+      "mean_MtCO2eq": 124.53,
+      "value_2021_MtCO2eq": 99.52
+    },
+    "Denmark": {
+      "mean_MtCO2eq": 49.45,
+      "value_2021_MtCO2eq": 29.56
+    },
+    "Estonia": {
+      "mean_MtCO2eq": 21.29,
+      "value_2021_MtCO2eq": 12.93
+    },
+    "Finland": {
+      "mean_MtCO2eq": 57.01,
+      "value_2021_MtCO2eq": 39.31
+    },
+    "France": {
+      "mean_MtCO2eq": 373.07,
+      "value_2021_MtCO2eq": 316.7
+    },
+    "Germany": {
+      "mean_MtCO2eq": 841.11,
+      "value_2021_MtCO2eq": 670.67
+    },
+    "Greece": {
+      "mean_MtCO2eq": 83.61,
+      "value_2021_MtCO2eq": 53.72
+    },
+    "Hungary": {
+      "mean_MtCO2eq": 57.08,
+      "value_2021_MtCO2eq": 50.99
+    },
+    "Ireland": {
+      "mean_MtCO2eq": 39.27,
+      "value_2021_MtCO2eq": 36.38
+    },
+    "Italy": {
+      "mean_MtCO2eq": 414.28,
+      "value_2021_MtCO2eq": 330.35
+    },
+    "Latvia": {
+      "mean_MtCO2eq": 9.13,
+      "value_2021_MtCO2eq": 7.53
+    },
+    "Lithuania": {
+      "mean_MtCO2eq": 15.7,
+      "value_2021_MtCO2eq": 14.33
+    },
+    "Luxembourg": {
+      "mean_MtCO2eq": 10.23,
+      "value_2021_MtCO2eq": 8.38
+    },
+    "Malta": {
+      "mean_MtCO2eq": 2.29,
+      "value_2021_MtCO2eq": 1.63
+    },
+    "Netherlands": {
+      "mean_MtCO2eq": 173.06,
+      "value_2021_MtCO2eq": 145.89
+    },
+    "Norway": {
+      "mean_MtCO2eq": 43.74,
+      "value_2021_MtCO2eq": 44.43
+    },
+    "Poland": {
+      "mean_MtCO2eq": 329.63,
+      "value_2021_MtCO2eq": 324.01
+    },
+    "Portugal": {
+      "mean_MtCO2eq": 54.16,
+      "value_2021_MtCO2eq": 38.96
+    },
+    "Romania": {
+      "mean_MtCO2eq": 104.59,
+      "value_2021_MtCO2eq": 80.75
+    },
+    "Slovenia": {
+      "mean_MtCO2eq": 15.69,
+      "value_2021_MtCO2eq": 13.86
+    },
+    "Spain": {
+      "mean_MtCO2eq": 282.92,
+      "value_2021_MtCO2eq": 233.19
+    },
+    "Sweden": {
+      "mean_MtCO2eq": 52.75,
+      "value_2021_MtCO2eq": 40.48
+    },
+    "Switzerland": {
+      "mean_MtCO2eq": 43.67,
+      "value_2021_MtCO2eq": 37.63
+    },
+    "United Kingdom": {
+      "mean_MtCO2eq": 500.52,
+      "value_2021_MtCO2eq": 337.91
+    }
+  },
+  "co2_trajectories": {
+    "Austria": {
+      "1990": 61.56,
+      "1991": 65.5,
+      "1992": 60.51,
+      "1993": 60.57,
+      "1994": 61.09,
+      "1995": 64.06,
+      "1996": 67.98,
+      "1997": 67.53,
+      "1998": 68.09,
+      "1999": 66.23,
+      "2000": 66.69,
+      "2001": 71.37,
+      "2002": 73.22,
+      "2003": 78.17,
+      "2004": 79.61,
+      "2005": 80.41,
+      "2006": 78.27,
+      "2007": 75.44,
+      "2008": 75.24,
+      "2009": 68.06,
+      "2010": 73.8,
+      "2011": 72.19,
+      "2012": 69.02,
+      "2013": 69.61,
+      "2014": 65.93,
+      "2015": 67.36,
+      "2016": 67.77,
+      "2017": 70.09,
+      "2018": 67.25,
+      "2019": 68.78,
+      "2020": 62.92,
+      "2021": 66.2
+    },
+    "Belgium": {
+      "1990": 115.82,
+      "1991": 119.73,
+      "1992": 117.62,
+      "1993": 115.7,
+      "1994": 122.03,
+      "1995": 122.31,
+      "1996": 127.31,
+      "1997": 124.34,
+      "1998": 127.31,
+      "1999": 122.97,
+      "2000": 124.9,
+      "2001": 125.76,
+      "2002": 118.49,
+      "2003": 123.37,
+      "2004": 121.98,
+      "2005": 119.01,
+      "2006": 116.08,
+      "2007": 112.91,
+      "2008": 114.25,
+      "2009": 107.29,
+      "2010": 114.9,
+      "2011": 104.49,
+      "2012": 103.01,
+      "2013": 104.36,
+      "2014": 97.78,
+      "2015": 102.42,
+      "2016": 101.35,
+      "2017": 99.77,
+      "2018": 100.46,
+      "2019": 100.31,
+      "2020": 91.93,
+      "2021": 96.02
+    },
+    "Bulgaria": {
+      "1990": 80.05,
+      "1991": 64.92,
+      "1992": 62.02,
+      "1993": 62.83,
+      "1994": 60.02,
+      "1995": 61.37,
+      "1996": 61.66,
+      "1997": 59.33,
+      "1998": 56.85,
+      "1999": 50.12,
+      "2000": 48.18,
+      "2001": 50.42,
+      "2002": 47.6,
+      "2003": 53.46,
+      "2004": 51.46,
+      "2005": 52.49,
+      "2006": 54.04,
+      "2007": 57.64,
+      "2008": 54.56,
+      "2009": 46.54,
+      "2010": 49.51,
+      "2011": 54.78,
+      "2012": 49.92,
+      "2013": 44.45,
+      "2014": 47.31,
+      "2015": 49.86,
+      "2016": 47.13,
+      "2017": 49.28,
+      "2018": 46.31,
+      "2019": 44.64,
+      "2020": 39.42,
+      "2021": 45.87
+    },
+    "Croatia": {
+      "1990": 24.02,
+      "1991": 17.74,
+      "1992": 16.39,
+      "1993": 16.65,
+      "1994": 15.97,
+      "1995": 16.5,
+      "1996": 17.2,
+      "1997": 18.31,
+      "1998": 19.03,
+      "1999": 19.94,
+      "2000": 19.38,
+      "2001": 20.54,
+      "2002": 21.36,
+      "2003": 22.75,
+      "2004": 22.73,
+      "2005": 22.85,
+      "2006": 23.04,
+      "2007": 24.51,
+      "2008": 23.32,
+      "2009": 21.67,
+      "2010": 20.94,
+      "2011": 20.45,
+      "2012": 18.79,
+      "2013": 18.38,
+      "2014": 17.68,
+      "2015": 18.02,
+      "2016": 18.27,
+      "2017": 18.8,
+      "2018": 17.77,
+      "2019": 17.97,
+      "2020": 17.19,
+      "2021": 17.51
+    },
+    "Cyprus": {
+      "1990": 4.64,
+      "1991": 5.16,
+      "1992": 5.49,
+      "1993": 5.75,
+      "1994": 5.99,
+      "1995": 5.86,
+      "1996": 6.22,
+      "1997": 6.31,
+      "1998": 6.62,
+      "1999": 6.88,
+      "2000": 7.13,
+      "2001": 7.0,
+      "2002": 7.18,
+      "2003": 7.84,
+      "2004": 7.79,
+      "2005": 7.91,
+      "2006": 8.01,
+      "2007": 8.31,
+      "2008": 8.49,
+      "2009": 8.29,
+      "2010": 7.91,
+      "2011": 7.66,
+      "2012": 7.12,
+      "2013": 6.44,
+      "2014": 6.82,
+      "2015": 6.86,
+      "2016": 7.22,
+      "2017": 7.36,
+      "2018": 7.21,
+      "2019": 7.22,
+      "2020": 6.8,
+      "2021": 6.92
+    },
+    "Czechia": {
+      "1990": 165.5,
+      "1991": 150.16,
+      "1992": 144.38,
+      "1993": 139.85,
+      "1994": 134.36,
+      "1995": 133.59,
+      "1996": 137.4,
+      "1997": 134.01,
+      "1998": 127.97,
+      "1999": 119.72,
+      "2000": 132.32,
+      "2001": 132.23,
+      "2002": 127.4,
+      "2003": 130.67,
+      "2004": 131.53,
+      "2005": 129.05,
+      "2006": 130.79,
+      "2007": 132.34,
+      "2008": 126.12,
+      "2009": 119.71,
+      "2010": 120.99,
+      "2011": 118.12,
+      "2012": 114.03,
+      "2013": 109.53,
+      "2014": 107.24,
+      "2015": 108.29,
+      "2016": 109.81,
+      "2017": 110.38,
+      "2018": 109.34,
+      "2019": 103.78,
+      "2020": 94.86,
+      "2021": 99.52
+    },
+    "Denmark": {
+      "1990": 52.43,
+      "1991": 63.09,
+      "1992": 57.39,
+      "1993": 59.71,
+      "1994": 63.69,
+      "1995": 60.59,
+      "1996": 74.02,
+      "1997": 64.25,
+      "1998": 60.26,
+      "1999": 57.28,
+      "2000": 53.15,
+      "2001": 54.74,
+      "2002": 54.26,
+      "2003": 59.69,
+      "2004": 54.12,
+      "2005": 50.65,
+      "2006": 58.6,
+      "2007": 53.87,
+      "2008": 50.6,
+      "2009": 48.41,
+      "2010": 48.56,
+      "2011": 43.48,
+      "2012": 38.6,
+      "2013": 40.34,
+      "2014": 36.2,
+      "2015": 34.07,
+      "2016": 35.68,
+      "2017": 33.55,
+      "2018": 33.54,
+      "2019": 30.08,
+      "2020": 27.79,
+      "2021": 29.56
+    },
+    "Estonia": {
+      "1990": 40.04,
+      "1991": 36.53,
+      "1992": 26.6,
+      "1993": 21.89,
+      "1994": 22.56,
+      "1995": 20.6,
+      "1996": 21.63,
+      "1997": 21.18,
+      "1998": 19.01,
+      "1999": 17.42,
+      "2000": 17.82,
+      "2001": 18.25,
+      "2002": 17.52,
+      "2003": 19.55,
+      "2004": 20.05,
+      "2005": 20.07,
+      "2006": 19.43,
+      "2007": 23.03,
+      "2008": 20.88,
+      "2009": 17.44,
+      "2010": 22.22,
+      "2011": 22.34,
+      "2012": 21.23,
+      "2013": 23.64,
+      "2014": 22.75,
+      "2015": 21.02,
+      "2016": 20.59,
+      "2017": 21.96,
+      "2018": 23.65,
+      "2019": 15.46,
+      "2020": 12.13,
+      "2021": 12.93
+    },
+    "Finland": {
+      "1990": 56.23,
+      "1991": 56.91,
+      "1992": 54.09,
+      "1993": 55.37,
+      "1994": 62.09,
+      "1995": 58.75,
+      "1996": 64.94,
+      "1997": 62.74,
+      "1998": 59.54,
+      "1999": 58.9,
+      "2000": 57.53,
+      "2001": 63.58,
+      "2002": 65.73,
+      "2003": 74.1,
+      "2004": 70.45,
+      "2005": 58.25,
+      "2006": 69.86,
+      "2007": 68.07,
+      "2008": 59.83,
+      "2009": 57.08,
+      "2010": 65.85,
+      "2011": 58.22,
+      "2012": 52.33,
+      "2013": 53.33,
+      "2014": 49.44,
+      "2015": 45.98,
+      "2016": 48.81,
+      "2017": 46.08,
+      "2018": 47.44,
+      "2019": 44.14,
+      "2020": 39.47,
+      "2021": 39.31
+    },
+    "France": {
+      "1990": 384.98,
+      "1991": 410.04,
+      "1992": 396.63,
+      "1993": 376.97,
+      "1994": 372.67,
+      "1995": 381.75,
+      "1996": 396.42,
+      "1997": 388.14,
+      "1998": 410.11,
+      "1999": 403.85,
+      "2000": 400.87,
+      "2001": 404.98,
+      "2002": 399.58,
+      "2003": 404.48,
+      "2004": 405.51,
+      "2005": 407.76,
+      "2006": 397.02,
+      "2007": 389.86,
+      "2008": 382.57,
+      "2009": 369.94,
+      "2010": 377.28,
+      "2011": 363.69,
+      "2012": 365.02,
+      "2013": 360.16,
+      "2014": 326.95,
+      "2015": 332.15,
+      "2016": 334.77,
+      "2017": 338.71,
+      "2018": 328.55,
+      "2019": 322.9,
+      "2020": 287.09,
+      "2021": 316.7
+    },
+    "Germany": {
+      "1990": 1012.7,
+      "1991": 991.72,
+      "1992": 937.79,
+      "1993": 929.33,
+      "1994": 915.25,
+      "1995": 910.47,
+      "1996": 939.35,
+      "1997": 907.48,
+      "1998": 906.61,
+      "1999": 870.66,
+      "2000": 871.38,
+      "2001": 885.47,
+      "2002": 869.94,
+      "2003": 877.91,
+      "2004": 863.39,
+      "2005": 841.75,
+      "2006": 855.45,
+      "2007": 826.6,
+      "2008": 829.91,
+      "2009": 768.13,
+      "2010": 814.96,
+      "2011": 788.12,
+      "2012": 800.03,
+      "2013": 817.82,
+      "2014": 778.75,
+      "2015": 784.91,
+      "2016": 789.25,
+      "2017": 774.48,
+      "2018": 746.7,
+      "2019": 696.5,
+      "2020": 642.09,
+      "2021": 670.67
+    },
+    "Greece": {
+      "1990": 77.91,
+      "1991": 77.94,
+      "1992": 80.07,
+      "1993": 79.59,
+      "1994": 81.21,
+      "1995": 84.26,
+      "1996": 84.25,
+      "1997": 85.2,
+      "1998": 88.66,
+      "1999": 88.9,
+      "2000": 96.07,
+      "2001": 98.12,
+      "2002": 98.09,
+      "2003": 101.85,
+      "2004": 101.59,
+      "2005": 103.64,
+      "2006": 102.39,
+      "2007": 106.01,
+      "2008": 101.84,
+      "2009": 96.22,
+      "2010": 89.1,
+      "2011": 86.14,
+      "2012": 81.56,
+      "2013": 73.88,
+      "2014": 71.01,
+      "2015": 69.45,
+      "2016": 68.16,
+      "2017": 68.38,
+      "2018": 66.54,
+      "2019": 61.49,
+      "2020": 52.36,
+      "2021": 53.72
+    },
+    "Hungary": {
+      "1990": 72.33,
+      "1991": 68.43,
+      "1992": 61.72,
+      "1993": 62.71,
+      "1994": 62.46,
+      "1995": 62.37,
+      "1996": 63.59,
+      "1997": 62.3,
+      "1998": 62.21,
+      "1999": 62.61,
+      "2000": 59.46,
+      "2001": 61.01,
+      "2002": 59.98,
+      "2003": 62.68,
+      "2004": 60.82,
+      "2005": 61.22,
+      "2006": 60.68,
+      "2007": 59.15,
+      "2008": 57.84,
+      "2009": 51.7,
+      "2010": 52.35,
+      "2011": 51.44,
+      "2012": 47.65,
+      "2013": 44.8,
+      "2014": 44.83,
+      "2015": 47.54,
+      "2016": 48.27,
+      "2017": 51.13,
+      "2018": 51.26,
+      "2019": 51.5,
+      "2020": 49.65,
+      "2021": 50.99
+    },
+    "Ireland": {
+      "1990": 32.34,
+      "1991": 32.87,
+      "1992": 32.77,
+      "1993": 33.0,
+      "1994": 34.22,
+      "1995": 34.79,
+      "1996": 36.11,
+      "1997": 37.36,
+      "1998": 39.78,
+      "1999": 41.22,
+      "2000": 43.83,
+      "2001": 46.05,
+      "2002": 44.98,
+      "2003": 44.47,
+      "2004": 44.99,
+      "2005": 47.07,
+      "2006": 47.69,
+      "2007": 46.94,
+      "2008": 46.28,
+      "2009": 41.17,
+      "2010": 40.92,
+      "2011": 37.14,
+      "2012": 37.6,
+      "2013": 36.33,
+      "2014": 36.14,
+      "2015": 37.65,
+      "2016": 39.51,
+      "2017": 38.26,
+      "2018": 38.03,
+      "2019": 36.37,
+      "2020": 34.29,
+      "2021": 36.38
+    },
+    "Italy": {
+      "1990": 426.06,
+      "1991": 424.89,
+      "1992": 423.05,
+      "1993": 416.3,
+      "1994": 410.75,
+      "1995": 434.91,
+      "1996": 429.85,
+      "1997": 433.3,
+      "1998": 442.47,
+      "1999": 449.36,
+      "2000": 454.32,
+      "2001": 453.68,
+      "2002": 460.96,
+      "2003": 480.76,
+      "2004": 492.16,
+      "2005": 493.07,
+      "2006": 487.52,
+      "2007": 480.32,
+      "2008": 464.98,
+      "2009": 413.81,
+      "2010": 423.63,
+      "2011": 414.5,
+      "2012": 394.45,
+      "2013": 361.71,
+      "2014": 342.98,
+      "2015": 353.74,
+      "2016": 349.17,
+      "2017": 345.68,
+      "2018": 340.37,
+      "2019": 332.56,
+      "2020": 295.21,
+      "2021": 330.35
+    },
+    "Latvia": {
+      "1990": 19.62,
+      "1991": 17.99,
+      "1992": 14.31,
+      "1993": 12.05,
+      "1994": 10.49,
+      "1995": 9.24,
+      "1996": 9.25,
+      "1997": 8.81,
+      "1998": 8.42,
+      "1999": 7.87,
+      "2000": 7.23,
+      "2001": 7.67,
+      "2002": 7.67,
+      "2003": 7.92,
+      "2004": 7.96,
+      "2005": 8.03,
+      "2006": 8.54,
+      "2007": 8.91,
+      "2008": 8.48,
+      "2009": 7.75,
+      "2010": 8.88,
+      "2011": 8.23,
+      "2012": 8.03,
+      "2013": 7.78,
+      "2014": 7.57,
+      "2015": 7.65,
+      "2016": 7.48,
+      "2017": 7.43,
+      "2018": 8.11,
+      "2019": 7.91,
+      "2020": 7.28,
+      "2021": 7.53
+    },
+    "Lithuania": {
+      "1990": 35.12,
+      "1991": 36.98,
+      "1992": 20.89,
+      "1993": 16.22,
+      "1994": 15.73,
+      "1995": 15.12,
+      "1996": 15.6,
+      "1997": 15.07,
+      "1998": 15.92,
+      "1999": 13.33,
+      "2000": 11.66,
+      "2001": 12.39,
+      "2002": 12.47,
+      "2003": 12.49,
+      "2004": 13.07,
+      "2005": 13.96,
+      "2006": 14.19,
+      "2007": 15.57,
+      "2008": 15.83,
+      "2009": 13.21,
+      "2010": 14.04,
+      "2011": 14.32,
+      "2012": 14.49,
+      "2013": 13.36,
+      "2014": 13.21,
+      "2015": 13.66,
+      "2016": 13.52,
+      "2017": 13.96,
+      "2018": 14.02,
+      "2019": 14.3,
+      "2020": 14.25,
+      "2021": 14.33
+    },
+    "Luxembourg": {
+      "1990": 11.98,
+      "1991": 12.46,
+      "1992": 12.17,
+      "1993": 12.4,
+      "1994": 11.47,
+      "1995": 9.08,
+      "1996": 9.15,
+      "1997": 8.55,
+      "1998": 7.81,
+      "1999": 8.17,
+      "2000": 8.8,
+      "2001": 9.33,
+      "2002": 10.03,
+      "2003": 10.45,
+      "2004": 11.88,
+      "2005": 12.11,
+      "2006": 11.94,
+      "2007": 11.34,
+      "2008": 11.21,
+      "2009": 10.61,
+      "2010": 11.21,
+      "2011": 11.09,
+      "2012": 10.87,
+      "2013": 10.32,
+      "2014": 9.82,
+      "2015": 9.31,
+      "2016": 9.04,
+      "2017": 9.19,
+      "2018": 9.54,
+      "2019": 9.69,
+      "2020": 7.99,
+      "2021": 8.38
+    },
+    "Malta": {
+      "1990": 2.32,
+      "1991": 2.22,
+      "1992": 2.18,
+      "1993": 2.81,
+      "1994": 2.52,
+      "1995": 2.39,
+      "1996": 2.33,
+      "1997": 2.48,
+      "1998": 2.38,
+      "1999": 2.42,
+      "2000": 2.13,
+      "2001": 2.49,
+      "2002": 2.32,
+      "2003": 2.61,
+      "2004": 2.61,
+      "2005": 2.63,
+      "2006": 2.66,
+      "2007": 2.72,
+      "2008": 2.73,
+      "2009": 2.52,
+      "2010": 2.59,
+      "2011": 2.58,
+      "2012": 2.72,
+      "2013": 2.38,
+      "2014": 2.37,
+      "2015": 1.67,
+      "2016": 1.37,
+      "2017": 1.56,
+      "2018": 1.57,
+      "2019": 1.67,
+      "2020": 1.62,
+      "2021": 1.63
+    },
+    "Netherlands": {
+      "1990": 164.82,
+      "1991": 170.94,
+      "1992": 169.04,
+      "1993": 172.3,
+      "1994": 173.36,
+      "1995": 177.62,
+      "1996": 187.85,
+      "1997": 180.11,
+      "1998": 180.86,
+      "1999": 176.15,
+      "2000": 176.85,
+      "2001": 181.46,
+      "2002": 181.83,
+      "2003": 184.29,
+      "2004": 186.75,
+      "2005": 182.18,
+      "2006": 177.68,
+      "2007": 178.86,
+      "2008": 179.94,
+      "2009": 174.75,
+      "2010": 186.12,
+      "2011": 174.07,
+      "2012": 171.6,
+      "2013": 169.36,
+      "2014": 161.76,
+      "2015": 169.35,
+      "2016": 170.79,
+      "2017": 168.18,
+      "2018": 163.09,
+      "2019": 157.97,
+      "2020": 142.16,
+      "2021": 145.89
+    },
+    "Norway": {
+      "1990": 36.31,
+      "1991": 33.82,
+      "1992": 36.36,
+      "1993": 38.5,
+      "1994": 40.48,
+      "1995": 40.65,
+      "1996": 40.94,
+      "1997": 43.3,
+      "1998": 45.1,
+      "1999": 46.72,
+      "2000": 41.77,
+      "2001": 42.28,
+      "2002": 41.58,
+      "2003": 44.45,
+      "2004": 44.89,
+      "2005": 43.31,
+      "2006": 44.01,
+      "2007": 44.91,
+      "2008": 47.1,
+      "2009": 45.12,
+      "2010": 47.98,
+      "2011": 46.94,
+      "2012": 46.39,
+      "2013": 46.88,
+      "2014": 46.99,
+      "2015": 47.95,
+      "2016": 47.37,
+      "2017": 47.41,
+      "2018": 46.64,
+      "2019": 45.35,
+      "2020": 43.71,
+      "2021": 44.43
+    },
+    "Poland": {
+      "1990": 371.52,
+      "1991": 369.23,
+      "1992": 360.32,
+      "1993": 360.77,
+      "1994": 354.66,
+      "1995": 356.44,
+      "1996": 372.45,
+      "1997": 362.67,
+      "1998": 334.07,
+      "1999": 324.65,
+      "2000": 313.03,
+      "2001": 309.76,
+      "2002": 302.51,
+      "2003": 315.3,
+      "2004": 317.49,
+      "2005": 317.1,
+      "2006": 330.75,
+      "2007": 330.3,
+      "2008": 324.58,
+      "2009": 311.38,
+      "2010": 329.38,
+      "2011": 326.94,
+      "2012": 319.73,
+      "2013": 315.09,
+      "2014": 302.57,
+      "2015": 305.79,
+      "2016": 316.73,
+      "2017": 330.22,
+      "2018": 329.63,
+      "2019": 312.07,
+      "2020": 296.88,
+      "2021": 324.01
+    },
+    "Portugal": {
+      "1990": 43.86,
+      "1991": 45.3,
+      "1992": 49.0,
+      "1993": 47.96,
+      "1994": 49.4,
+      "1995": 52.81,
+      "1996": 51.11,
+      "1997": 53.59,
+      "1998": 58.02,
+      "1999": 64.74,
+      "2000": 64.24,
+      "2001": 63.5,
+      "2002": 67.74,
+      "2003": 62.8,
+      "2004": 64.57,
+      "2005": 67.83,
+      "2006": 62.94,
+      "2007": 61.34,
+      "2008": 59.26,
+      "2009": 58.49,
+      "2010": 53.25,
+      "2011": 51.4,
+      "2012": 49.78,
+      "2013": 48.14,
+      "2014": 47.67,
+      "2015": 51.72,
+      "2016": 50.52,
+      "2017": 55.14,
+      "2018": 51.11,
+      "2019": 46.43,
+      "2020": 40.64,
+      "2021": 38.96
+    },
+    "Romania": {
+      "1990": 187.73,
+      "1991": 152.01,
+      "1992": 138.36,
+      "1993": 131.1,
+      "1994": 128.16,
+      "1995": 133.41,
+      "1996": 136.56,
+      "1997": 124.32,
+      "1998": 108.98,
+      "1999": 93.19,
+      "2000": 97.5,
+      "2001": 104.41,
+      "2002": 103.4,
+      "2003": 107.85,
+      "2004": 105.58,
+      "2005": 104.49,
+      "2006": 110.84,
+      "2007": 107.09,
+      "2008": 105.37,
+      "2009": 85.69,
+      "2010": 83.34,
+      "2011": 89.82,
+      "2012": 87.63,
+      "2013": 79.53,
+      "2014": 78.99,
+      "2015": 80.3,
+      "2016": 78.71,
+      "2017": 81.8,
+      "2018": 83.0,
+      "2019": 81.15,
+      "2020": 75.7,
+      "2021": 80.75
+    },
+    "Slovenia": {
+      "1990": 14.69,
+      "1991": 13.74,
+      "1992": 13.27,
+      "1993": 13.98,
+      "1994": 14.08,
+      "1995": 14.97,
+      "1996": 15.72,
+      "1997": 16.21,
+      "1998": 16.03,
+      "1999": 15.47,
+      "2000": 15.09,
+      "2001": 16.97,
+      "2002": 17.28,
+      "2003": 17.12,
+      "2004": 17.4,
+      "2005": 17.64,
+      "2006": 17.94,
+      "2007": 17.94,
+      "2008": 18.9,
+      "2009": 16.89,
+      "2010": 17.16,
+      "2011": 16.08,
+      "2012": 15.52,
+      "2013": 15.51,
+      "2014": 14.13,
+      "2015": 14.29,
+      "2016": 15.02,
+      "2017": 15.34,
+      "2018": 15.45,
+      "2019": 14.83,
+      "2020": 13.54,
+      "2021": 13.86
+    },
+    "Spain": {
+      "1990": 229.47,
+      "1991": 237.45,
+      "1992": 245.48,
+      "1993": 231.11,
+      "1994": 242.17,
+      "1995": 255.05,
+      "1996": 244.8,
+      "1997": 263.99,
+      "1998": 272.61,
+      "1999": 294.72,
+      "2000": 310.33,
+      "2001": 310.54,
+      "2002": 328.59,
+      "2003": 335.97,
+      "2004": 352.5,
+      "2005": 367.83,
+      "2006": 358.33,
+      "2007": 371.51,
+      "2008": 340.12,
+      "2009": 300.4,
+      "2010": 287.75,
+      "2011": 289.52,
+      "2012": 284.97,
+      "2013": 256.36,
+      "2014": 255.24,
+      "2015": 271.54,
+      "2016": 263.05,
+      "2017": 278.38,
+      "2018": 271.79,
+      "2019": 254.35,
+      "2020": 214.45,
+      "2021": 233.19
+    },
+    "Sweden": {
+      "1990": 57.14,
+      "1991": 57.64,
+      "1992": 60.19,
+      "1993": 60.27,
+      "1994": 62.94,
+      "1995": 62.64,
+      "1996": 67.76,
+      "1997": 61.8,
+      "1998": 63.0,
+      "1999": 61.69,
+      "2000": 57.98,
+      "2001": 58.06,
+      "2002": 59.39,
+      "2003": 59.66,
+      "2004": 58.07,
+      "2005": 54.53,
+      "2006": 55.1,
+      "2007": 52.84,
+      "2008": 51.71,
+      "2009": 46.92,
+      "2010": 52.88,
+      "2011": 48.46,
+      "2012": 45.73,
+      "2013": 43.97,
+      "2014": 42.78,
+      "2015": 42.9,
+      "2016": 42.49,
+      "2017": 41.84,
+      "2018": 39.65,
+      "2019": 39.5,
+      "2020": 38.04,
+      "2021": 40.48
+    },
+    "Switzerland": {
+      "1990": 44.76,
+      "1991": 47.07,
+      "1992": 47.03,
+      "1993": 44.72,
+      "1994": 43.79,
+      "1995": 44.58,
+      "1996": 45.13,
+      "1997": 43.83,
+      "1998": 45.3,
+      "1999": 45.56,
+      "2000": 44.76,
+      "2001": 46.19,
+      "2002": 44.58,
+      "2003": 45.86,
+      "2004": 46.4,
+      "2005": 47.03,
+      "2006": 46.61,
+      "2007": 44.62,
+      "2008": 45.98,
+      "2009": 44.62,
+      "2010": 46.32,
+      "2011": 42.29,
+      "2012": 43.6,
+      "2013": 44.61,
+      "2014": 40.9,
+      "2015": 40.22,
+      "2016": 40.79,
+      "2017": 39.82,
+      "2018": 38.52,
+      "2019": 38.4,
+      "2020": 35.94,
+      "2021": 37.63
+    },
+    "United Kingdom": {
+      "1990": 582.61,
+      "1991": 591.74,
+      "1992": 578.44,
+      "1993": 562.4,
+      "1994": 554.88,
+      "1995": 548.34,
+      "1996": 567.62,
+      "1997": 546.74,
+      "1998": 547.41,
+      "1999": 544.01,
+      "2000": 551.96,
+      "2001": 563.12,
+      "2002": 547.16,
+      "2003": 560.74,
+      "2004": 561.17,
+      "2005": 559.52,
+      "2006": 559.93,
+      "2007": 550.42,
+      "2008": 533.91,
+      "2009": 483.47,
+      "2010": 500.75,
+      "2011": 459.21,
+      "2012": 481.39,
+      "2013": 470.22,
+      "2014": 430.66,
+      "2015": 415.88,
+      "2016": 391.86,
+      "2017": 380.71,
+      "2018": 373.88,
+      "2019": 359.01,
+      "2020": 319.7,
+      "2021": 337.91
+    }
+  },
+  "starting_values_2021": {
+    "Austria": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 36.0,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 8.616,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 31.538,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 27.657,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 45368.643,
+        "EnergyPC": 3728.134,
+        "Industry": 25.725,
+        "Urban": 68.774
+      }
+    },
+    "Belgium": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 11.7,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 12.452,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 44.785,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 24.447,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 43140.968,
+        "EnergyPC": 4823.583,
+        "Industry": 17.997,
+        "Urban": 87.431
+      }
+    },
+    "Bulgaria": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 20.4,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 8.222,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 46.49,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 20.706,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 9161.477,
+        "EnergyPC": 2918.916,
+        "Industry": 20.75,
+        "Urban": 73.347
+      }
+    },
+    "Croatia": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 34.1,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 4.003,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 26.376,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 21.793,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 15395.129,
+        "EnergyPC": 2212.497,
+        "Industry": 19.585,
+        "Urban": 56.768
+      }
+    },
+    "Cyprus": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 15.6,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 1.141,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 13.161,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 19.646,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 29517.072,
+        "EnergyPC": 1666.217,
+        "Industry": 11.48,
+        "Urban": 66.672
+      }
+    },
+    "Czechia": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 17.2,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 13.765,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 45.731,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 28.129,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 20373.878,
+        "EnergyPC": 4056.317,
+        "Industry": 28.516,
+        "Urban": 72.681
+      }
+    },
+    "Denmark": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 39.5,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 8.626,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 65.45,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 23.959,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 59312.816,
+        "EnergyPC": 2756.123,
+        "Industry": 19.393,
+        "Urban": 88.262
+      }
+    },
+    "Estonia": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 38.0,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 1.876,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 23.088,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 30.948,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 21570.666,
+        "EnergyPC": 3427.3,
+        "Industry": 22.831,
+        "Urban": 70.178
+      }
+    },
+    "Finland": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 50.2,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 8.474,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 7.462,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 24.788,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 45792.045,
+        "EnergyPC": 5996.893,
+        "Industry": 24.233,
+        "Urban": 73.371
+      }
+    },
+    "France": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 16.2,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 69.909,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 52.742,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 23.447,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 38030.857,
+        "EnergyPC": 3469.834,
+        "Industry": 16.088,
+        "Urban": 78.736
+      }
+    },
+    "Germany": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 17.6,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 58.624,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 47.486,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 22.673,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 44011.019,
+        "EnergyPC": 3467.031,
+        "Industry": 25.157,
+        "Urban": 81.633
+      }
+    },
+    "Greece": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 21.5,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 11.316,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 44.313,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 17.483,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 19232.968,
+        "EnergyPC": 1924.002,
+        "Industry": 14.771,
+        "Urban": 78.388
+      }
+    },
+    "Hungary": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 15.3,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 11.075,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 55.267,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 30.936,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 15787.954,
+        "EnergyPC": 2850.706,
+        "Industry": 23.898,
+        "Urban": 70.206
+      }
+    },
+    "Ireland": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 12.7,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 19.084,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 62.955,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 23.032,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 92781.232,
+        "EnergyPC": 2689.363,
+        "Industry": 38.047,
+        "Urban": 63.677
+      }
+    },
+    "Italy": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 17.5,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 48.748,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 41.942,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 22.001,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 32267.709,
+        "EnergyPC": 2531.087,
+        "Industry": 22.557,
+        "Urban": 69.481
+      }
+    },
+    "Latvia": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 44.0,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 2.168,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 31.657,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 25.723,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 16070.168,
+        "EnergyPC": 2375.519,
+        "Industry": 21.092,
+        "Urban": 68.181
+      }
+    },
+    "Lithuania": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 33.2,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 3.655,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 46.922,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 21.835,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 18569.706,
+        "EnergyPC": 2774.32,
+        "Industry": 24.859,
+        "Urban": 68.191
+      }
+    },
+    "Luxembourg": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 20.5,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 0.641,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 51.584,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 18.688,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 110873.185,
+        "EnergyPC": 5631.087,
+        "Industry": 10.592,
+        "Urban": 94.586
+      }
+    },
+    "Malta": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 8.6,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 0.234,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 27.344,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 23.069,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 31436.349,
+        "EnergyPC": 1363.056,
+        "Industry": 11.445,
+        "Urban": 95.515
+      }
+    },
+    "Netherlands": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 12.2,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 18.126,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 53.816,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 22.194,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 49780.844,
+        "EnergyPC": 4057.791,
+        "Industry": 17.706,
+        "Urban": 94.629
+      }
+    },
+    "Norway": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 61.4,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 8.966,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 2.704,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 25.088,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 77812.712,
+        "EnergyPC": 5298.877,
+        "Industry": 37.902,
+        "Urban": 82.861
+      }
+    },
+    "Poland": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 15.2,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 47.081,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 47.369,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 21.811,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 16368.624,
+        "EnergyPC": 2920.114,
+        "Industry": 28.486,
+        "Urban": 59.81
+      }
+    },
+    "Portugal": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 32.3,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 11.543,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 43.254,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 20.935,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 20747.699,
+        "EnergyPC": 1943.293,
+        "Industry": 19.313,
+        "Urban": 61.095
+      }
+    },
+    "Romania": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 23.6,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 18.804,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 56.845,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 26.423,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 11546.322,
+        "EnergyPC": 1787.096,
+        "Industry": 26.205,
+        "Urban": 52.232
+      }
+    },
+    "Slovenia": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 23.4,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 3.174,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 30.341,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 21.798,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 24665.441,
+        "EnergyPC": 3144.094,
+        "Industry": 28.151,
+        "Urban": 55.305
+      }
+    },
+    "Spain": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 19.0,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 44.596,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 52.485,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 21.874,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 26705.363,
+        "EnergyPC": 2422.467,
+        "Industry": 20.317,
+        "Urban": 79.785
+      }
+    },
+    "Sweden": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 57.9,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 8.269,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 7.373,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 25.272,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 53997.134,
+        "EnergyPC": 4558.744,
+        "Industry": 22.577,
+        "Urban": 88.174
+      }
+    },
+    "Switzerland": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 27.7,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 5.783,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 37.95,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 26.156,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 88661.203,
+        "EnergyPC": 2619.806,
+        "Industry": 25.636,
+        "Urban": 84.201
+      }
+    },
+    "United Kingdom": {
+      "policy_levers": {
+        "e": {
+          "variable": "Renewables",
+          "value": 12.2,
+          "unit": "% share"
+        },
+        "m": {
+          "variable": "Methane",
+          "value": 61.695,
+          "unit": "MtCO2eq"
+        },
+        "l": {
+          "variable": "AgriLand",
+          "value": 71.158,
+          "unit": "% land area"
+        },
+        "p": {
+          "variable": "Investment",
+          "value": 18.899,
+          "unit": "% GDP"
+        }
+      },
+      "controls": {
+        "GDP_PC": 46487.342,
+        "EnergyPC": 2377.264,
+        "Industry": 16.955,
+        "Urban": 82.989
+      }
+    }
+  },
+  "variable_statistics": {
+    "CO2": {
+      "mean": 136.573,
+      "std": 189.807,
+      "min": 1.365,
+      "max": 1012.702
+    },
+    "Renewables": {
+      "mean": 16.826,
+      "std": 14.047,
+      "min": 0.0,
+      "max": 61.4
+    },
+    "Methane": {
+      "mean": 22.208,
+      "std": 28.641,
+      "min": 0.141,
+      "max": 144.84
+    },
+    "AgriLand": {
+      "mean": 42.705,
+      "std": 19.074,
+      "min": 2.672,
+      "max": 75.241
+    },
+    "Investment": {
+      "mean": 23.094,
+      "std": 4.427,
+      "min": 1.157,
+      "max": 53.702
+    },
+    "GDP_PC": {
+      "mean": 30971.788,
+      "std": 22471.418,
+      "min": 3537.345,
+      "max": 112417.877
+    },
+    "EnergyPC": {
+      "mean": 3496.847,
+      "std": 1482.512,
+      "min": 1311.667,
+      "max": 9429.925
+    },
+    "Industry": {
+      "mean": 24.654,
+      "std": 6.113,
+      "min": 9.973,
+      "max": 51.275
+    },
+    "Urban": {
+      "mean": 71.857,
+      "std": 10.865,
+      "min": 47.738,
+      "max": 95.515
+    }
+  }
+}

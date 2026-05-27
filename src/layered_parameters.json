@@ -1,0 +1,3914 @@
+{
+  "metadata": {
+    "model": "Layered STIRPAT \u2014 Gas-specific hierarchical estimation",
+    "framework": "Extended STIRPAT (Dietz & Rosa 1997) + IPCC AR6 WG3 Chapter 2",
+    "countries": [
+      "Austria",
+      "Belgium",
+      "Bulgaria",
+      "Croatia",
+      "Cyprus",
+      "Czechia",
+      "Denmark",
+      "Estonia",
+      "Finland",
+      "France",
+      "Germany",
+      "Greece",
+      "Hungary",
+      "Ireland",
+      "Italy",
+      "Latvia",
+      "Lithuania",
+      "Luxembourg",
+      "Malta",
+      "Netherlands",
+      "Norway",
+      "Poland",
+      "Portugal",
+      "Romania",
+      "Slovenia",
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "United Kingdom"
+    ],
+    "n_countries": 29,
+    "period": "1990-2021",
+    "equations": {
+      "CO2_FF": "Kaya identity + STIRPAT (Kaya 1990, Liddle 2015, IPCC AR6 WG3 Fig 2.16)",
+      "CH4": "AFOLU Kaya decomposition (Hong et al. 2021, IPCC AR6 WG3 Fig 2.21)",
+      "N2O": "Agricultural soil emissions (IPCC AR6 WG3 Table 2.1)",
+      "CO2_AFOLU": "Land use structural proxy (IPCC AR6 WG3 Section 2.4.2.5, Martin Drews recommendation)"
+    },
+    "notes": {
+      "CO2_FF": "Kaya identity specification. CO2 total used as proxy for fossil fuel CO2.",
+      "CH4": "AgriLand is a proxy for agricultural methane pathways (enteric fermentation, manure). EU methane also includes waste and energy fugitives \u2014 not captured here due to data constraints.",
+      "N2O": "Simplified specification due to absence of fertiliser intensity data at country level. AgriLand serves as agricultural intensification proxy.",
+      "CO2_AFOLU": "Land-use structural representation. ForestArea expected negative (sequestration). AgriLand expected positive (land conversion). IPCC AR6 WG3 acknowledges \u00b170% uncertainty in LULUCF estimates."
+    }
+  },
+  "equations": {
+    "CO2_FF": {
+      "description": "Kaya identity + STIRPAT (Kaya 1990, Liddle 2015, IPCC AR6 WG3 Fig 2.16)",
+      "dependent": "CO2",
+      "regressors": [
+        "Population",
+        "GDP_PC",
+        "EnergyPC",
+        "Renewables",
+        "Industry",
+        "Investment"
+      ],
+      "country_results": {
+        "Austria": {
+          "n_obs": 32,
+          "r2": 0.9866,
+          "r2_adj": 0.9827,
+          "intercept": -16.7623,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.785,
+              "pvalue": 0.1576,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.071,
+              "pvalue": 0.5688,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.0811,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.2908,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": -0.0987,
+              "pvalue": 0.7399,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": 0.0487,
+              "pvalue": 0.6807,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0037,
+              "pvalue": 0.381,
+              "significant": false
+            }
+          }
+        },
+        "Belgium": {
+          "n_obs": 27,
+          "r2": 0.9779,
+          "r2_adj": 0.9697,
+          "intercept": -2.3001,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.0213,
+              "pvalue": 0.9969,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.0006,
+              "pvalue": 0.9994,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 0.6838,
+              "pvalue": 0.0017,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.0081,
+              "pvalue": 0.9558,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": 0.3133,
+              "pvalue": 0.6749,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.0396,
+              "pvalue": 0.7614,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0011,
+              "pvalue": 0.9748,
+              "significant": false
+            }
+          }
+        },
+        "Bulgaria": {
+          "n_obs": 32,
+          "r2": 0.9448,
+          "r2_adj": 0.9287,
+          "intercept": -63.7142,
+          "elasticities": {
+            "Population": {
+              "elasticity": 3.7565,
+              "pvalue": 0.0114,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.1982,
+              "pvalue": 0.2975,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 0.8001,
+              "pvalue": 0.0345,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.0411,
+              "pvalue": 0.645,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": 0.078,
+              "pvalue": 0.4935,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": 0.0005,
+              "pvalue": 0.9892,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0198,
+              "pvalue": 0.3047,
+              "significant": false
+            }
+          }
+        },
+        "Croatia": {
+          "n_obs": 27,
+          "r2": 0.9765,
+          "r2_adj": 0.9679,
+          "intercept": -24.3112,
+          "elasticities": {
+            "Population": {
+              "elasticity": 1.2995,
+              "pvalue": 0.0014,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.0274,
+              "pvalue": 0.8664,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.148,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.3054,
+              "pvalue": 0.0064,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": -0.1531,
+              "pvalue": 0.4576,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.0185,
+              "pvalue": 0.812,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0027,
+              "pvalue": 0.6292,
+              "significant": false
+            }
+          }
+        },
+        "Cyprus": {
+          "n_obs": 32,
+          "r2": 0.9721,
+          "r2_adj": 0.964,
+          "intercept": -61.6276,
+          "elasticities": {
+            "Population": {
+              "elasticity": 4.0725,
+              "pvalue": 0.0024,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.2511,
+              "pvalue": 0.1738,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 0.5875,
+              "pvalue": 0.0126,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.0113,
+              "pvalue": 0.3302,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": 0.0855,
+              "pvalue": 0.4329,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.0191,
+              "pvalue": 0.7428,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0571,
+              "pvalue": 0.0203,
+              "significant": true
+            }
+          }
+        },
+        "Czechia": {
+          "n_obs": 29,
+          "r2": 0.976,
+          "r2_adj": 0.9679,
+          "intercept": -5.8856,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.1991,
+              "pvalue": 0.856,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.2785,
+              "pvalue": 0.2123,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 0.5597,
+              "pvalue": 0.0994,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.1327,
+              "pvalue": 0.1382,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": 0.2386,
+              "pvalue": 0.1469,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.1197,
+              "pvalue": 0.1634,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0112,
+              "pvalue": 0.1265,
+              "significant": false
+            }
+          }
+        },
+        "Denmark": {
+          "n_obs": 32,
+          "r2": 0.9961,
+          "r2_adj": 0.995,
+          "intercept": 92.8421,
+          "elasticities": {
+            "Population": {
+              "elasticity": -6.2012,
+              "pvalue": 0.0335,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": -0.6273,
+              "pvalue": 0.1875,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.6385,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.1673,
+              "pvalue": 0.1037,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": 0.4165,
+              "pvalue": 0.1962,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.0358,
+              "pvalue": 0.6774,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0385,
+              "pvalue": 0.0995,
+              "significant": true
+            }
+          }
+        },
+        "Estonia": {
+          "n_obs": 27,
+          "r2": 0.8742,
+          "r2_adj": 0.8279,
+          "intercept": 81.1818,
+          "elasticities": {
+            "Population": {
+              "elasticity": -5.5183,
+              "pvalue": 0.0517,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": -0.8181,
+              "pvalue": 0.0213,
+              "significant": true
+            },
+            "EnergyPC": {
+              "elasticity": 0.8208,
+              "pvalue": 0.0006,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.5952,
+              "pvalue": 0.101,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": 0.881,
+              "pvalue": 0.1993,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.0943,
+              "pvalue": 0.6183,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0293,
+              "pvalue": 0.186,
+              "significant": false
+            }
+          }
+        },
+        "Finland": {
+          "n_obs": 32,
+          "r2": 0.9866,
+          "r2_adj": 0.9827,
+          "intercept": -160.6625,
+          "elasticities": {
+            "Population": {
+              "elasticity": 10.094,
+              "pvalue": 0.0002,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": -0.1001,
+              "pvalue": 0.612,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.3557,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.9102,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": 0.25,
+              "pvalue": 0.1057,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": 0.006,
+              "pvalue": 0.9471,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0239,
+              "pvalue": 0.0001,
+              "significant": true
+            }
+          }
+        },
+        "France": {
+          "n_obs": 32,
+          "r2": 0.9777,
+          "r2_adj": 0.9711,
+          "intercept": 38.5937,
+          "elasticities": {
+            "Population": {
+              "elasticity": -2.3736,
+              "pvalue": 0.0756,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.142,
+              "pvalue": 0.6306,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.1098,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": 0.061,
+              "pvalue": 0.1458,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": -0.5716,
+              "pvalue": 0.1051,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": 0.2694,
+              "pvalue": 0.0211,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.001,
+              "pvalue": 0.8869,
+              "significant": false
+            }
+          }
+        },
+        "Germany": {
+          "n_obs": 31,
+          "r2": 0.9876,
+          "r2_adj": 0.9839,
+          "intercept": 1.2054,
+          "elasticities": {
+            "Population": {
+              "elasticity": -0.3772,
+              "pvalue": 0.3988,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.4728,
+              "pvalue": 0.0411,
+              "significant": true
+            },
+            "EnergyPC": {
+              "elasticity": 0.8737,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.1106,
+              "pvalue": 0.0004,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": 0.3884,
+              "pvalue": 0.0001,
+              "significant": true
+            },
+            "Investment": {
+              "elasticity": -0.2911,
+              "pvalue": 0.0003,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0012,
+              "pvalue": 0.7803,
+              "significant": false
+            }
+          }
+        },
+        "Greece": {
+          "n_obs": 27,
+          "r2": 0.9914,
+          "r2_adj": 0.9882,
+          "intercept": -25.6655,
+          "elasticities": {
+            "Population": {
+              "elasticity": 1.225,
+              "pvalue": 0.3541,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.2384,
+              "pvalue": 0.2502,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.0388,
+              "pvalue": 0.0143,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": 0.0071,
+              "pvalue": 0.9649,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": 0.0527,
+              "pvalue": 0.7018,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.1071,
+              "pvalue": 0.1968,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.014,
+              "pvalue": 0.0191,
+              "significant": true
+            }
+          }
+        },
+        "Hungary": {
+          "n_obs": 27,
+          "r2": 0.991,
+          "r2_adj": 0.9877,
+          "intercept": -48.4933,
+          "elasticities": {
+            "Population": {
+              "elasticity": 2.7954,
+              "pvalue": 0.0809,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": -0.0808,
+              "pvalue": 0.5018,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.0718,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.159,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": 0.0267,
+              "pvalue": 0.8239,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": 0.0087,
+              "pvalue": 0.8451,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0035,
+              "pvalue": 0.6614,
+              "significant": false
+            }
+          }
+        },
+        "Ireland": {
+          "n_obs": 27,
+          "r2": 0.9577,
+          "r2_adj": 0.9421,
+          "intercept": -29.5723,
+          "elasticities": {
+            "Population": {
+              "elasticity": 1.6763,
+              "pvalue": 0.012,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": -0.027,
+              "pvalue": 0.8394,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 0.9897,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.1081,
+              "pvalue": 0.0713,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": 0.0241,
+              "pvalue": 0.8508,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": 0.0241,
+              "pvalue": 0.5518,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0076,
+              "pvalue": 0.4094,
+              "significant": false
+            }
+          }
+        },
+        "Italy": {
+          "n_obs": 32,
+          "r2": 0.9937,
+          "r2_adj": 0.9919,
+          "intercept": -50.7812,
+          "elasticities": {
+            "Population": {
+              "elasticity": 2.6067,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.2072,
+              "pvalue": 0.2658,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 0.9808,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.0669,
+              "pvalue": 0.1546,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": 0.0541,
+              "pvalue": 0.6437,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": 0.08,
+              "pvalue": 0.1792,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0085,
+              "pvalue": 0.0002,
+              "significant": true
+            }
+          }
+        },
+        "Latvia": {
+          "n_obs": 27,
+          "r2": 0.9535,
+          "r2_adj": 0.9364,
+          "intercept": 5.9302,
+          "elasticities": {
+            "Population": {
+              "elasticity": -0.6068,
+              "pvalue": 0.3726,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.0941,
+              "pvalue": 0.4088,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 0.9016,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.4873,
+              "pvalue": 0.0002,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": 0.2507,
+              "pvalue": 0.0428,
+              "significant": true
+            },
+            "Investment": {
+              "elasticity": 0.0019,
+              "pvalue": 0.9685,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.01,
+              "pvalue": 0.2924,
+              "significant": false
+            }
+          }
+        },
+        "Lithuania": {
+          "n_obs": 27,
+          "r2": 0.9063,
+          "r2_adj": 0.8717,
+          "intercept": 48.5958,
+          "elasticities": {
+            "Population": {
+              "elasticity": -2.9961,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": -0.1027,
+              "pvalue": 0.7816,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 0.3075,
+              "pvalue": 0.0142,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.5728,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": -0.4359,
+              "pvalue": 0.1441,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": 0.2008,
+              "pvalue": 0.2632,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0052,
+              "pvalue": 0.8309,
+              "significant": false
+            }
+          }
+        },
+        "Luxembourg": {
+          "n_obs": 27,
+          "r2": 0.9959,
+          "r2_adj": 0.9944,
+          "intercept": -35.6297,
+          "elasticities": {
+            "Population": {
+              "elasticity": 2.1523,
+              "pvalue": 0.0026,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": -0.1222,
+              "pvalue": 0.2551,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.3127,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.016,
+              "pvalue": 0.07,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": -0.0722,
+              "pvalue": 0.1287,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.1225,
+              "pvalue": 0.0169,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0231,
+              "pvalue": 0.0963,
+              "significant": true
+            }
+          }
+        },
+        "Malta": {
+          "n_obs": 20,
+          "r2": 0.9883,
+          "r2_adj": 0.9815,
+          "intercept": -9.2683,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.4187,
+              "pvalue": 0.6066,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.5272,
+              "pvalue": 0.0845,
+              "significant": true
+            },
+            "EnergyPC": {
+              "elasticity": 1.335,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.0092,
+              "pvalue": 0.6832,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": 0.0832,
+              "pvalue": 0.7872,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.1456,
+              "pvalue": 0.2447,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0196,
+              "pvalue": 0.3352,
+              "significant": false
+            }
+          }
+        },
+        "Netherlands": {
+          "n_obs": 32,
+          "r2": 0.9772,
+          "r2_adj": 0.9706,
+          "intercept": 62.6511,
+          "elasticities": {
+            "Population": {
+              "elasticity": -4.0293,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.2063,
+              "pvalue": 0.0793,
+              "significant": true
+            },
+            "EnergyPC": {
+              "elasticity": 0.9029,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.1544,
+              "pvalue": 0.0003,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": -0.0938,
+              "pvalue": 0.5046,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": 0.0157,
+              "pvalue": 0.7258,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.027,
+              "pvalue": 0.0001,
+              "significant": true
+            }
+          }
+        },
+        "Norway": {
+          "n_obs": 32,
+          "r2": 0.9149,
+          "r2_adj": 0.8901,
+          "intercept": -65.1499,
+          "elasticities": {
+            "Population": {
+              "elasticity": 3.7045,
+              "pvalue": 0.0176,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 1.1377,
+              "pvalue": 0.0002,
+              "significant": true
+            },
+            "EnergyPC": {
+              "elasticity": 0.2651,
+              "pvalue": 0.0665,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.6544,
+              "pvalue": 0.0694,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": -0.1557,
+              "pvalue": 0.1636,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": 0.0747,
+              "pvalue": 0.2958,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0388,
+              "pvalue": 0.0188,
+              "significant": true
+            }
+          }
+        },
+        "Poland": {
+          "n_obs": 27,
+          "r2": 0.9723,
+          "r2_adj": 0.962,
+          "intercept": -16.8808,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.8861,
+              "pvalue": 0.3838,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.0385,
+              "pvalue": 0.8715,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 0.8728,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.1471,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": 0.1253,
+              "pvalue": 0.0914,
+              "significant": true
+            },
+            "Investment": {
+              "elasticity": -0.0348,
+              "pvalue": 0.5143,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0024,
+              "pvalue": 0.7885,
+              "significant": false
+            }
+          }
+        },
+        "Portugal": {
+          "n_obs": 27,
+          "r2": 0.9875,
+          "r2_adj": 0.9829,
+          "intercept": 11.8422,
+          "elasticities": {
+            "Population": {
+              "elasticity": -1.2179,
+              "pvalue": 0.3997,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.2038,
+              "pvalue": 0.7815,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.4714,
+              "pvalue": 0.0004,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.1324,
+              "pvalue": 0.2801,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": -0.119,
+              "pvalue": 0.7519,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.2251,
+              "pvalue": 0.0097,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0109,
+              "pvalue": 0.2171,
+              "significant": false
+            }
+          }
+        },
+        "Romania": {
+          "n_obs": 32,
+          "r2": 0.9922,
+          "r2_adj": 0.99,
+          "intercept": -76.4545,
+          "elasticities": {
+            "Population": {
+              "elasticity": 4.3273,
+              "pvalue": 0.0112,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.0412,
+              "pvalue": 0.8153,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 0.9388,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.0468,
+              "pvalue": 0.1112,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": 0.055,
+              "pvalue": 0.6753,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": 0.193,
+              "pvalue": 0.0042,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.0158,
+              "pvalue": 0.2116,
+              "significant": false
+            }
+          }
+        },
+        "Slovenia": {
+          "n_obs": 27,
+          "r2": 0.9555,
+          "r2_adj": 0.9391,
+          "intercept": -22.7554,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.8503,
+              "pvalue": 0.6376,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.4742,
+              "pvalue": 0.3901,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.0479,
+              "pvalue": 0.0022,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.0481,
+              "pvalue": 0.382,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": 0.2354,
+              "pvalue": 0.4942,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.1979,
+              "pvalue": 0.3532,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0164,
+              "pvalue": 0.2454,
+              "significant": false
+            }
+          }
+        },
+        "Spain": {
+          "n_obs": 27,
+          "r2": 0.9921,
+          "r2_adj": 0.9892,
+          "intercept": -28.2947,
+          "elasticities": {
+            "Population": {
+              "elasticity": 1.4404,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.2463,
+              "pvalue": 0.3855,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.0181,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.1541,
+              "pvalue": 0.0087,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": -0.6354,
+              "pvalue": 0.0754,
+              "significant": true
+            },
+            "Investment": {
+              "elasticity": 0.1529,
+              "pvalue": 0.3814,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0179,
+              "pvalue": 0.0021,
+              "significant": true
+            }
+          }
+        },
+        "Sweden": {
+          "n_obs": 32,
+          "r2": 0.9827,
+          "r2_adj": 0.9776,
+          "intercept": 30.8812,
+          "elasticities": {
+            "Population": {
+              "elasticity": -1.4526,
+              "pvalue": 0.3733,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.2941,
+              "pvalue": 0.5985,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": -0.1305,
+              "pvalue": 0.5799,
+              "significant": false
+            },
+            "Renewables": {
+              "elasticity": -0.5174,
+              "pvalue": 0.0006,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": 1.0504,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Investment": {
+              "elasticity": -0.2519,
+              "pvalue": 0.2021,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0131,
+              "pvalue": 0.4887,
+              "significant": false
+            }
+          }
+        },
+        "Switzerland": {
+          "n_obs": 32,
+          "r2": 0.9199,
+          "r2_adj": 0.8966,
+          "intercept": -14.6273,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.5195,
+              "pvalue": 0.6339,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.4445,
+              "pvalue": 0.1187,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 0.7435,
+              "pvalue": 0.0002,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.0514,
+              "pvalue": 0.7431,
+              "significant": false
+            },
+            "Industry": {
+              "elasticity": -0.0165,
+              "pvalue": 0.9382,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.1943,
+              "pvalue": 0.0696,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0077,
+              "pvalue": 0.4226,
+              "significant": false
+            }
+          }
+        },
+        "United Kingdom": {
+          "n_obs": 32,
+          "r2": 0.9708,
+          "r2_adj": 0.9623,
+          "intercept": -126.1522,
+          "elasticities": {
+            "Population": {
+              "elasticity": 6.897,
+              "pvalue": 0.0004,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.1784,
+              "pvalue": 0.6654,
+              "significant": false
+            },
+            "EnergyPC": {
+              "elasticity": 1.1141,
+              "pvalue": 0.0049,
+              "significant": true
+            },
+            "Renewables": {
+              "elasticity": -0.0828,
+              "pvalue": 0.0739,
+              "significant": true
+            },
+            "Industry": {
+              "elasticity": -0.6502,
+              "pvalue": 0.3291,
+              "significant": false
+            },
+            "Investment": {
+              "elasticity": -0.0661,
+              "pvalue": 0.832,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0424,
+              "pvalue": 0.0125,
+              "significant": true
+            }
+          }
+        }
+      },
+      "pooled_fe": {
+        "Population": {
+          "elasticity": 1.0131,
+          "pvalue": 0.0,
+          "significant": true
+        },
+        "GDP_PC": {
+          "elasticity": 0.117,
+          "pvalue": 0.0004,
+          "significant": true
+        },
+        "EnergyPC": {
+          "elasticity": 1.1229,
+          "pvalue": 0.0,
+          "significant": true
+        },
+        "Renewables": {
+          "elasticity": -0.0114,
+          "pvalue": 0.114,
+          "significant": false
+        },
+        "Industry": {
+          "elasticity": -0.0365,
+          "pvalue": 0.1755,
+          "significant": false
+        },
+        "Investment": {
+          "elasticity": -0.0246,
+          "pvalue": 0.4929,
+          "significant": false
+        },
+        "trend": {
+          "elasticity": -0.0093,
+          "pvalue": 0.0,
+          "significant": true
+        }
+      },
+      "summary": {
+        "n_countries_estimated": 29,
+        "n_skipped": 0,
+        "mean_r2": 0.9689,
+        "min_r2": 0.8742,
+        "max_r2": 0.9961
+      }
+    },
+    "CH4": {
+      "description": "AFOLU Kaya decomposition (Hong et al. 2021, IPCC AR6 WG3 Fig 2.21)",
+      "dependent": "CH4",
+      "regressors": [
+        "Population",
+        "AgriLand",
+        "GDP_PC"
+      ],
+      "country_results": {
+        "Austria": {
+          "n_obs": 32,
+          "r2": 0.9949,
+          "r2_adj": 0.9942,
+          "intercept": 0.763,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.3991,
+              "pvalue": 0.2782,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": -1.3536,
+              "pvalue": 0.009,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.002,
+              "pvalue": 0.9845,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0241,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Belgium": {
+          "n_obs": 22,
+          "r2": 0.9634,
+          "r2_adj": 0.9547,
+          "intercept": -54.7011,
+          "elasticities": {
+            "Population": {
+              "elasticity": 3.0666,
+              "pvalue": 0.1534,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 1.7456,
+              "pvalue": 0.0386,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.106,
+              "pvalue": 0.6423,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0274,
+              "pvalue": 0.0397,
+              "significant": true
+            }
+          }
+        },
+        "Bulgaria": {
+          "n_obs": 32,
+          "r2": 0.879,
+          "r2_adj": 0.861,
+          "intercept": 14.6544,
+          "elasticities": {
+            "Population": {
+              "elasticity": -1.0256,
+              "pvalue": 0.3261,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": -0.1089,
+              "pvalue": 0.7582,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.495,
+              "pvalue": 0.0013,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0366,
+              "pvalue": 0.0047,
+              "significant": true
+            }
+          }
+        },
+        "Croatia": {
+          "n_obs": 30,
+          "r2": 0.5838,
+          "r2_adj": 0.5173,
+          "intercept": -7.4376,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.5518,
+              "pvalue": 0.3568,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 0.0766,
+              "pvalue": 0.4409,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.0126,
+              "pvalue": 0.9514,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0088,
+              "pvalue": 0.1253,
+              "significant": false
+            }
+          }
+        },
+        "Cyprus": {
+          "n_obs": 32,
+          "r2": 0.977,
+          "r2_adj": 0.9736,
+          "intercept": 16.7464,
+          "elasticities": {
+            "Population": {
+              "elasticity": -1.2542,
+              "pvalue": 0.0055,
+              "significant": true
+            },
+            "AgriLand": {
+              "elasticity": -0.0419,
+              "pvalue": 0.5551,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.0614,
+              "pvalue": 0.4191,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0345,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Czechia": {
+          "n_obs": 29,
+          "r2": 0.8641,
+          "r2_adj": 0.8415,
+          "intercept": -21.1931,
+          "elasticities": {
+            "Population": {
+              "elasticity": 1.5327,
+              "pvalue": 0.1387,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": -0.1928,
+              "pvalue": 0.2506,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.011,
+              "pvalue": 0.9156,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0099,
+              "pvalue": 0.0024,
+              "significant": true
+            }
+          }
+        },
+        "Denmark": {
+          "n_obs": 32,
+          "r2": 0.943,
+          "r2_adj": 0.9346,
+          "intercept": -42.0394,
+          "elasticities": {
+            "Population": {
+              "elasticity": 2.9639,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "AgriLand": {
+              "elasticity": -0.0732,
+              "pvalue": 0.7815,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.1323,
+              "pvalue": 0.0581,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0154,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Estonia": {
+          "n_obs": 30,
+          "r2": 0.2471,
+          "r2_adj": 0.1267,
+          "intercept": 35.2841,
+          "elasticities": {
+            "Population": {
+              "elasticity": -2.5928,
+              "pvalue": 0.4366,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 0.617,
+              "pvalue": 0.1269,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.0405,
+              "pvalue": 0.9003,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0123,
+              "pvalue": 0.4034,
+              "significant": false
+            }
+          }
+        },
+        "Finland": {
+          "n_obs": 32,
+          "r2": 0.9387,
+          "r2_adj": 0.9297,
+          "intercept": 92.342,
+          "elasticities": {
+            "Population": {
+              "elasticity": -5.5934,
+              "pvalue": 0.5219,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": -0.466,
+              "pvalue": 0.0902,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": -0.2508,
+              "pvalue": 0.4426,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0093,
+              "pvalue": 0.7991,
+              "significant": false
+            }
+          }
+        },
+        "France": {
+          "n_obs": 32,
+          "r2": 0.9523,
+          "r2_adj": 0.9453,
+          "intercept": -17.8328,
+          "elasticities": {
+            "Population": {
+              "elasticity": 1.2369,
+              "pvalue": 0.0749,
+              "significant": true
+            },
+            "AgriLand": {
+              "elasticity": -0.5367,
+              "pvalue": 0.6683,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.2032,
+              "pvalue": 0.0058,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0145,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Germany": {
+          "n_obs": 32,
+          "r2": 0.9723,
+          "r2_adj": 0.9682,
+          "intercept": 27.925,
+          "elasticities": {
+            "Population": {
+              "elasticity": -1.2568,
+              "pvalue": 0.2709,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 0.6424,
+              "pvalue": 0.7292,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.2927,
+              "pvalue": 0.6387,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0225,
+              "pvalue": 0.0083,
+              "significant": true
+            }
+          }
+        },
+        "Greece": {
+          "n_obs": 32,
+          "r2": 0.8889,
+          "r2_adj": 0.8724,
+          "intercept": -25.8973,
+          "elasticities": {
+            "Population": {
+              "elasticity": 1.73,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "AgriLand": {
+              "elasticity": 0.0452,
+              "pvalue": 0.7468,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.0205,
+              "pvalue": 0.5469,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0025,
+              "pvalue": 0.3612,
+              "significant": false
+            }
+          }
+        },
+        "Hungary": {
+          "n_obs": 32,
+          "r2": 0.8401,
+          "r2_adj": 0.8164,
+          "intercept": 77.9451,
+          "elasticities": {
+            "Population": {
+              "elasticity": -4.8413,
+              "pvalue": 0.0493,
+              "significant": true
+            },
+            "AgriLand": {
+              "elasticity": -0.4892,
+              "pvalue": 0.079,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.4974,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0334,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Ireland": {
+          "n_obs": 32,
+          "r2": 0.471,
+          "r2_adj": 0.3926,
+          "intercept": 1.5069,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.0688,
+              "pvalue": 0.862,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": -0.302,
+              "pvalue": 0.5667,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.1548,
+              "pvalue": 0.0733,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0034,
+              "pvalue": 0.6126,
+              "significant": false
+            }
+          }
+        },
+        "Italy": {
+          "n_obs": 32,
+          "r2": 0.7785,
+          "r2_adj": 0.7457,
+          "intercept": 9.2889,
+          "elasticities": {
+            "Population": {
+              "elasticity": -0.4682,
+              "pvalue": 0.2218,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 0.2834,
+              "pvalue": 0.1086,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.1837,
+              "pvalue": 0.0144,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.0009,
+              "pvalue": 0.6862,
+              "significant": false
+            }
+          }
+        },
+        "Latvia": {
+          "n_obs": 30,
+          "r2": 0.8663,
+          "r2_adj": 0.8449,
+          "intercept": -24.5295,
+          "elasticities": {
+            "Population": {
+              "elasticity": 1.5501,
+              "pvalue": 0.5739,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 1.1393,
+              "pvalue": 0.0012,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": -0.1232,
+              "pvalue": 0.1819,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0123,
+              "pvalue": 0.6954,
+              "significant": false
+            }
+          }
+        },
+        "Lithuania": {
+          "n_obs": 30,
+          "r2": 0.9452,
+          "r2_adj": 0.9365,
+          "intercept": 57.6538,
+          "elasticities": {
+            "Population": {
+              "elasticity": -4.073,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "AgriLand": {
+              "elasticity": -0.1231,
+              "pvalue": 0.4603,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.5983,
+              "pvalue": 0.0145,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.087,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Luxembourg": {
+          "n_obs": 22,
+          "r2": 0.3891,
+          "r2_adj": 0.2453,
+          "intercept": -25.6254,
+          "elasticities": {
+            "Population": {
+              "elasticity": 1.3826,
+              "pvalue": 0.1294,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 1.7401,
+              "pvalue": 0.2695,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.0253,
+              "pvalue": 0.9438,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0277,
+              "pvalue": 0.1514,
+              "significant": false
+            }
+          }
+        },
+        "Malta": {
+          "n_obs": 32,
+          "r2": 0.7106,
+          "r2_adj": 0.6678,
+          "intercept": -10.779,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.1437,
+              "pvalue": 0.7962,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": -0.6693,
+              "pvalue": 0.0009,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.9839,
+              "pvalue": 0.08,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0301,
+              "pvalue": 0.1671,
+              "significant": false
+            }
+          }
+        },
+        "Netherlands": {
+          "n_obs": 32,
+          "r2": 0.9876,
+          "r2_adj": 0.9858,
+          "intercept": 24.4427,
+          "elasticities": {
+            "Population": {
+              "elasticity": -0.6226,
+              "pvalue": 0.7244,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": -1.2481,
+              "pvalue": 0.0555,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": -0.548,
+              "pvalue": 0.0017,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0174,
+              "pvalue": 0.04,
+              "significant": true
+            }
+          }
+        },
+        "Norway": {
+          "n_obs": 32,
+          "r2": 0.8084,
+          "r2_adj": 0.78,
+          "intercept": 77.5166,
+          "elasticities": {
+            "Population": {
+              "elasticity": -5.1789,
+              "pvalue": 0.064,
+              "significant": true
+            },
+            "AgriLand": {
+              "elasticity": -0.6556,
+              "pvalue": 0.2003,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.4452,
+              "pvalue": 0.4822,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0444,
+              "pvalue": 0.1636,
+              "significant": false
+            }
+          }
+        },
+        "Poland": {
+          "n_obs": 32,
+          "r2": 0.9573,
+          "r2_adj": 0.951,
+          "intercept": 72.1299,
+          "elasticities": {
+            "Population": {
+              "elasticity": -3.6018,
+              "pvalue": 0.4016,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 0.845,
+              "pvalue": 0.0383,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": -0.9273,
+              "pvalue": 0.2117,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0136,
+              "pvalue": 0.7065,
+              "significant": false
+            }
+          }
+        },
+        "Portugal": {
+          "n_obs": 32,
+          "r2": 0.7802,
+          "r2_adj": 0.7476,
+          "intercept": -12.9529,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.4727,
+              "pvalue": 0.3365,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 0.2494,
+              "pvalue": 0.2193,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.6935,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0049,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Romania": {
+          "n_obs": 32,
+          "r2": 0.9628,
+          "r2_adj": 0.9573,
+          "intercept": 1.5298,
+          "elasticities": {
+            "Population": {
+              "elasticity": -0.3011,
+              "pvalue": 0.7472,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 0.1456,
+              "pvalue": 0.7504,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.6885,
+              "pvalue": 0.0002,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0387,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Slovenia": {
+          "n_obs": 30,
+          "r2": 0.7142,
+          "r2_adj": 0.6684,
+          "intercept": 19.02,
+          "elasticities": {
+            "Population": {
+              "elasticity": -1.6062,
+              "pvalue": 0.5914,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 0.2251,
+              "pvalue": 0.2308,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.4973,
+              "pvalue": 0.0029,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0145,
+              "pvalue": 0.0895,
+              "significant": true
+            }
+          }
+        },
+        "Spain": {
+          "n_obs": 32,
+          "r2": 0.9226,
+          "r2_adj": 0.9111,
+          "intercept": -9.1994,
+          "elasticities": {
+            "Population": {
+              "elasticity": 0.2227,
+              "pvalue": 0.2863,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": 1.4232,
+              "pvalue": 0.0002,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.3262,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.0063,
+              "pvalue": 0.01,
+              "significant": true
+            }
+          }
+        },
+        "Sweden": {
+          "n_obs": 32,
+          "r2": 0.9602,
+          "r2_adj": 0.9543,
+          "intercept": 11.4449,
+          "elasticities": {
+            "Population": {
+              "elasticity": -0.4529,
+              "pvalue": 0.5619,
+              "significant": false
+            },
+            "AgriLand": {
+              "elasticity": -0.2189,
+              "pvalue": 0.4138,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.1365,
+              "pvalue": 0.5958,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0087,
+              "pvalue": 0.3258,
+              "significant": false
+            }
+          }
+        },
+        "Switzerland": {
+          "n_obs": 32,
+          "r2": 0.942,
+          "r2_adj": 0.9334,
+          "intercept": -134.3652,
+          "elasticities": {
+            "Population": {
+              "elasticity": 4.609,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "AgriLand": {
+              "elasticity": 17.07,
+              "pvalue": 0.0036,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.0378,
+              "pvalue": 0.87,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0048,
+              "pvalue": 0.7589,
+              "significant": false
+            }
+          }
+        },
+        "United Kingdom": {
+          "n_obs": 32,
+          "r2": 0.9931,
+          "r2_adj": 0.9921,
+          "intercept": 79.7887,
+          "elasticities": {
+            "Population": {
+              "elasticity": -4.1886,
+              "pvalue": 0.0004,
+              "significant": true
+            },
+            "AgriLand": {
+              "elasticity": 0.1908,
+              "pvalue": 0.5768,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.087,
+              "pvalue": 0.5186,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0056,
+              "pvalue": 0.5066,
+              "significant": false
+            }
+          }
+        }
+      },
+      "pooled_fe": {
+        "Population": {
+          "elasticity": 0.7601,
+          "pvalue": 0.0,
+          "significant": true
+        },
+        "AgriLand": {
+          "elasticity": -0.0815,
+          "pvalue": 0.236,
+          "significant": false
+        },
+        "GDP_PC": {
+          "elasticity": 0.1323,
+          "pvalue": 0.0006,
+          "significant": true
+        },
+        "trend": {
+          "elasticity": -0.0122,
+          "pvalue": 0.0,
+          "significant": true
+        }
+      },
+      "summary": {
+        "n_countries_estimated": 29,
+        "n_skipped": 0,
+        "mean_r2": 0.8356,
+        "min_r2": 0.2471,
+        "max_r2": 0.9949
+      }
+    },
+    "N2O": {
+      "description": "Agricultural soil emissions (IPCC AR6 WG3 Table 2.1)",
+      "dependent": "N2O",
+      "regressors": [
+        "AgriLand",
+        "Population"
+      ],
+      "country_results": {
+        "Austria": {
+          "n_obs": 32,
+          "r2": 0.8407,
+          "r2_adj": 0.8237,
+          "intercept": -25.1732,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.3943,
+              "pvalue": 0.7098,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 1.5761,
+              "pvalue": 0.0227,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0144,
+              "pvalue": 0.0159,
+              "significant": true
+            }
+          }
+        },
+        "Belgium": {
+          "n_obs": 22,
+          "r2": 0.5075,
+          "r2_adj": 0.4254,
+          "intercept": -143.7737,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 1.5284,
+              "pvalue": 0.1647,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 8.6609,
+              "pvalue": 0.0004,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0515,
+              "pvalue": 0.0002,
+              "significant": true
+            }
+          }
+        },
+        "Bulgaria": {
+          "n_obs": 32,
+          "r2": 0.6129,
+          "r2_adj": 0.5715,
+          "intercept": 156.2856,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 2.1421,
+              "pvalue": 0.0228,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -10.3099,
+              "pvalue": 0.0042,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0872,
+              "pvalue": 0.0368,
+              "significant": true
+            }
+          }
+        },
+        "Croatia": {
+          "n_obs": 30,
+          "r2": 0.1787,
+          "r2_adj": 0.0839,
+          "intercept": 4.0754,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.0579,
+              "pvalue": 0.3937,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -0.2246,
+              "pvalue": 0.7941,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0021,
+              "pvalue": 0.6856,
+              "significant": false
+            }
+          }
+        },
+        "Cyprus": {
+          "n_obs": 32,
+          "r2": 0.4396,
+          "r2_adj": 0.3796,
+          "intercept": -4.9345,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.3188,
+              "pvalue": 0.0004,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": 0.2013,
+              "pvalue": 0.8273,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0023,
+              "pvalue": 0.8802,
+              "significant": false
+            }
+          }
+        },
+        "Czechia": {
+          "n_obs": 29,
+          "r2": 0.7347,
+          "r2_adj": 0.7029,
+          "intercept": 111.6841,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.9367,
+              "pvalue": 0.0718,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -7.0157,
+              "pvalue": 0.005,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.0096,
+              "pvalue": 0.2977,
+              "significant": false
+            }
+          }
+        },
+        "Denmark": {
+          "n_obs": 32,
+          "r2": 0.9664,
+          "r2_adj": 0.9628,
+          "intercept": -169.0136,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.8367,
+              "pvalue": 0.0565,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": 11.2296,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0614,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Estonia": {
+          "n_obs": 30,
+          "r2": 0.8934,
+          "r2_adj": 0.8811,
+          "intercept": -22.7872,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.0518,
+              "pvalue": 0.5727,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 1.631,
+              "pvalue": 0.0278,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.0156,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Finland": {
+          "n_obs": 32,
+          "r2": 0.691,
+          "r2_adj": 0.6579,
+          "intercept": 138.1396,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -1.0449,
+              "pvalue": 0.0036,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -8.6645,
+              "pvalue": 0.0355,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.0359,
+              "pvalue": 0.0194,
+              "significant": true
+            }
+          }
+        },
+        "France": {
+          "n_obs": 32,
+          "r2": 0.861,
+          "r2_adj": 0.8461,
+          "intercept": -74.2066,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 15.8266,
+              "pvalue": 0.0633,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": 0.8158,
+              "pvalue": 0.8736,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0145,
+              "pvalue": 0.2529,
+              "significant": false
+            }
+          }
+        },
+        "Germany": {
+          "n_obs": 32,
+          "r2": 0.8608,
+          "r2_adj": 0.8459,
+          "intercept": 38.5211,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.3562,
+              "pvalue": 0.8182,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -1.9824,
+              "pvalue": 0.1826,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0217,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Greece": {
+          "n_obs": 32,
+          "r2": 0.9808,
+          "r2_adj": 0.9787,
+          "intercept": -10.9923,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.1332,
+              "pvalue": 0.6874,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 0.8099,
+              "pvalue": 0.2082,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0216,
+              "pvalue": 0.0006,
+              "significant": true
+            }
+          }
+        },
+        "Hungary": {
+          "n_obs": 32,
+          "r2": 0.6068,
+          "r2_adj": 0.5647,
+          "intercept": 299.1621,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 1.8467,
+              "pvalue": 0.0543,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -18.9188,
+              "pvalue": 0.0011,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.042,
+              "pvalue": 0.0353,
+              "significant": true
+            }
+          }
+        },
+        "Ireland": {
+          "n_obs": 32,
+          "r2": 0.6411,
+          "r2_adj": 0.6026,
+          "intercept": 21.6454,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.1901,
+              "pvalue": 0.4387,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -1.3256,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.0157,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Italy": {
+          "n_obs": 32,
+          "r2": 0.9534,
+          "r2_adj": 0.9484,
+          "intercept": 112.6592,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.5494,
+              "pvalue": 0.2548,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -6.2549,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.003,
+              "pvalue": 0.4968,
+              "significant": false
+            }
+          }
+        },
+        "Latvia": {
+          "n_obs": 30,
+          "r2": 0.835,
+          "r2_adj": 0.816,
+          "intercept": -52.2659,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.6125,
+              "pvalue": 0.0014,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": 3.4777,
+              "pvalue": 0.035,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.049,
+              "pvalue": 0.0074,
+              "significant": true
+            }
+          }
+        },
+        "Lithuania": {
+          "n_obs": 30,
+          "r2": 0.9376,
+          "r2_adj": 0.9304,
+          "intercept": 68.6822,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.4056,
+              "pvalue": 0.0004,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -4.3703,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0319,
+              "pvalue": 0.0016,
+              "significant": true
+            }
+          }
+        },
+        "Luxembourg": {
+          "n_obs": 22,
+          "r2": 0.8293,
+          "r2_adj": 0.8008,
+          "intercept": 23.0888,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -1.1734,
+              "pvalue": 0.1816,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -1.5153,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.0256,
+              "pvalue": 0.0005,
+              "significant": true
+            }
+          }
+        },
+        "Malta": {
+          "n_obs": 32,
+          "r2": 0.8706,
+          "r2_adj": 0.8568,
+          "intercept": 9.7976,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.2701,
+              "pvalue": 0.0307,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -0.9173,
+              "pvalue": 0.0001,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0058,
+              "pvalue": 0.0319,
+              "significant": true
+            }
+          }
+        },
+        "Netherlands": {
+          "n_obs": 32,
+          "r2": 0.7926,
+          "r2_adj": 0.7703,
+          "intercept": -216.6517,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 1.5361,
+              "pvalue": 0.5391,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 12.8193,
+              "pvalue": 0.0003,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0764,
+              "pvalue": 0.0007,
+              "significant": true
+            }
+          }
+        },
+        "Norway": {
+          "n_obs": 32,
+          "r2": 0.6209,
+          "r2_adj": 0.5803,
+          "intercept": 2.7218,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.5077,
+              "pvalue": 0.1786,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -0.1182,
+              "pvalue": 0.9191,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0055,
+              "pvalue": 0.5751,
+              "significant": false
+            }
+          }
+        },
+        "Poland": {
+          "n_obs": 32,
+          "r2": 0.7315,
+          "r2_adj": 0.7028,
+          "intercept": -13.8768,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.0223,
+              "pvalue": 0.8902,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 0.9858,
+              "pvalue": 0.2438,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0048,
+              "pvalue": 0.0263,
+              "significant": true
+            }
+          }
+        },
+        "Portugal": {
+          "n_obs": 32,
+          "r2": 0.7214,
+          "r2_adj": 0.6915,
+          "intercept": 10.8024,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.242,
+              "pvalue": 0.3513,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -0.6473,
+              "pvalue": 0.1205,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0045,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Romania": {
+          "n_obs": 32,
+          "r2": 0.2782,
+          "r2_adj": 0.2008,
+          "intercept": 88.7546,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -1.8345,
+              "pvalue": 0.3122,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -4.6767,
+              "pvalue": 0.0295,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.042,
+              "pvalue": 0.0144,
+              "significant": true
+            }
+          }
+        },
+        "Slovenia": {
+          "n_obs": 30,
+          "r2": 0.8461,
+          "r2_adj": 0.8284,
+          "intercept": 111.7533,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.6038,
+              "pvalue": 0.0072,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -7.5756,
+              "pvalue": 0.0032,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.0135,
+              "pvalue": 0.0009,
+              "significant": true
+            }
+          }
+        },
+        "Spain": {
+          "n_obs": 32,
+          "r2": 0.576,
+          "r2_adj": 0.5306,
+          "intercept": 7.1438,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 2.645,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -0.8413,
+              "pvalue": 0.0561,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.0217,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Sweden": {
+          "n_obs": 32,
+          "r2": 0.6522,
+          "r2_adj": 0.6149,
+          "intercept": -19.4996,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.0596,
+              "pvalue": 0.8999,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 1.336,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0104,
+              "pvalue": 0.002,
+              "significant": true
+            }
+          }
+        },
+        "Switzerland": {
+          "n_obs": 32,
+          "r2": 0.9308,
+          "r2_adj": 0.9234,
+          "intercept": -19.5632,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.5525,
+              "pvalue": 0.7793,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 1.1578,
+              "pvalue": 0.0002,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0169,
+              "pvalue": 0.0002,
+              "significant": true
+            }
+          }
+        },
+        "United Kingdom": {
+          "n_obs": 32,
+          "r2": 0.9064,
+          "r2_adj": 0.8964,
+          "intercept": -32.4998,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.6206,
+              "pvalue": 0.069,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": 2.15,
+              "pvalue": 0.0009,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0228,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        }
+      },
+      "pooled_fe": {
+        "AgriLand": {
+          "elasticity": 0.1522,
+          "pvalue": 0.003,
+          "significant": true
+        },
+        "Population": {
+          "elasticity": -0.4353,
+          "pvalue": 0.0,
+          "significant": true
+        },
+        "trend": {
+          "elasticity": -0.0043,
+          "pvalue": 0.0,
+          "significant": true
+        }
+      },
+      "summary": {
+        "n_countries_estimated": 29,
+        "n_skipped": 0,
+        "mean_r2": 0.7344,
+        "min_r2": 0.1787,
+        "max_r2": 0.9808
+      }
+    },
+    "CO2_AFOLU": {
+      "description": "Land use structural proxy (IPCC AR6 WG3 Section 2.4.2.5, Martin Drews recommendation)",
+      "dependent": "CO2",
+      "regressors": [
+        "AgriLand",
+        "ForestArea",
+        "Population",
+        "GDP_PC"
+      ],
+      "country_results": {
+        "Austria": {
+          "n_obs": 32,
+          "r2": 0.6927,
+          "r2_adj": 0.6336,
+          "intercept": -39.8737,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.5342,
+              "pvalue": 0.7705,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 5.327,
+              "pvalue": 0.4783,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 0.6153,
+              "pvalue": 0.6442,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 1.4854,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0274,
+              "pvalue": 0.1357,
+              "significant": false
+            }
+          }
+        },
+        "Belgium": {
+          "n_obs": 22,
+          "r2": 0.9413,
+          "r2_adj": 0.923,
+          "intercept": -31.8705,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 1.3989,
+              "pvalue": 0.4542,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": -0.8507,
+              "pvalue": 0.6907,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 1.6367,
+              "pvalue": 0.6492,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.7077,
+              "pvalue": 0.2827,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0257,
+              "pvalue": 0.2911,
+              "significant": false
+            }
+          }
+        },
+        "Bulgaria": {
+          "n_obs": 32,
+          "r2": 0.8823,
+          "r2_adj": 0.8597,
+          "intercept": -34.6446,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.2706,
+              "pvalue": 0.6307,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": -0.6674,
+              "pvalue": 0.6456,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 2.1117,
+              "pvalue": 0.1389,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.7467,
+              "pvalue": 0.0036,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.009,
+              "pvalue": 0.5413,
+              "significant": false
+            }
+          }
+        },
+        "Croatia": {
+          "n_obs": 30,
+          "r2": 0.9297,
+          "r2_adj": 0.915,
+          "intercept": -56.1725,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.168,
+              "pvalue": 0.0587,
+              "significant": true
+            },
+            "ForestArea": {
+              "elasticity": 11.1596,
+              "pvalue": 0.1829,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 0.8098,
+              "pvalue": 0.1526,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.8626,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0357,
+              "pvalue": 0.0062,
+              "significant": true
+            }
+          }
+        },
+        "Cyprus": {
+          "n_obs": 32,
+          "r2": 0.934,
+          "r2_adj": 0.9213,
+          "intercept": -54.8171,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.011,
+              "pvalue": 0.9068,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 2.92,
+              "pvalue": 0.3974,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 2.9702,
+              "pvalue": 0.3516,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.7038,
+              "pvalue": 0.0001,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.057,
+              "pvalue": 0.2524,
+              "significant": false
+            }
+          }
+        },
+        "Czechia": {
+          "n_obs": 29,
+          "r2": 0.9561,
+          "r2_adj": 0.9465,
+          "intercept": 10.726,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.1428,
+              "pvalue": 0.4626,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 2.3052,
+              "pvalue": 0.8999,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -1.2348,
+              "pvalue": 0.4183,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.6716,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0283,
+              "pvalue": 0.0235,
+              "significant": true
+            }
+          }
+        },
+        "Denmark": {
+          "n_obs": 32,
+          "r2": 0.9255,
+          "r2_adj": 0.9111,
+          "intercept": 174.1477,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -2.1604,
+              "pvalue": 0.2654,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": -1.4448,
+              "pvalue": 0.3908,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -10.9872,
+              "pvalue": 0.012,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 1.2133,
+              "pvalue": 0.0009,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.0116,
+              "pvalue": 0.5735,
+              "significant": false
+            }
+          }
+        },
+        "Estonia": {
+          "n_obs": 30,
+          "r2": 0.3352,
+          "r2_adj": 0.1967,
+          "intercept": 30.1984,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.7329,
+              "pvalue": 0.0516,
+              "significant": true
+            },
+            "ForestArea": {
+              "elasticity": 5.9917,
+              "pvalue": 0.4097,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -4.0388,
+              "pvalue": 0.296,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.3877,
+              "pvalue": 0.3076,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0558,
+              "pvalue": 0.0902,
+              "significant": true
+            }
+          }
+        },
+        "Finland": {
+          "n_obs": 32,
+          "r2": 0.769,
+          "r2_adj": 0.7246,
+          "intercept": -166.6872,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.1018,
+              "pvalue": 0.9435,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 4.3049,
+              "pvalue": 0.7256,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 8.9122,
+              "pvalue": 0.0973,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 1.3322,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0654,
+              "pvalue": 0.001,
+              "significant": true
+            }
+          }
+        },
+        "France": {
+          "n_obs": 32,
+          "r2": 0.9438,
+          "r2_adj": 0.933,
+          "intercept": 75.6172,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.6727,
+              "pvalue": 0.8618,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 12.7455,
+              "pvalue": 0.0112,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -7.2193,
+              "pvalue": 0.011,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 1.3579,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.06,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Germany": {
+          "n_obs": 32,
+          "r2": 0.9368,
+          "r2_adj": 0.9246,
+          "intercept": -17.4425,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.9652,
+              "pvalue": 0.0756,
+              "significant": true
+            },
+            "ForestArea": {
+              "elasticity": 6.1533,
+              "pvalue": 0.1516,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -0.5791,
+              "pvalue": 0.3344,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.9067,
+              "pvalue": 0.0484,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0225,
+              "pvalue": 0.0003,
+              "significant": true
+            }
+          }
+        },
+        "Greece": {
+          "n_obs": 32,
+          "r2": 0.9668,
+          "r2_adj": 0.9604,
+          "intercept": -84.5549,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.187,
+              "pvalue": 0.644,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 0.5678,
+              "pvalue": 0.8783,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 5.0884,
+              "pvalue": 0.1783,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.5519,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0266,
+              "pvalue": 0.0717,
+              "significant": true
+            }
+          }
+        },
+        "Hungary": {
+          "n_obs": 32,
+          "r2": 0.9477,
+          "r2_adj": 0.9376,
+          "intercept": -221.6678,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.8138,
+              "pvalue": 0.0355,
+              "significant": true
+            },
+            "ForestArea": {
+              "elasticity": -3.7507,
+              "pvalue": 0.0004,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": 14.0363,
+              "pvalue": 0.006,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.818,
+              "pvalue": 0.0001,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": 0.025,
+              "pvalue": 0.1513,
+              "significant": false
+            }
+          }
+        },
+        "Ireland": {
+          "n_obs": 32,
+          "r2": 0.9531,
+          "r2_adj": 0.9441,
+          "intercept": -41.2433,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.105,
+              "pvalue": 0.784,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 2.0861,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": 2.2997,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.5213,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0815,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Italy": {
+          "n_obs": 32,
+          "r2": 0.9662,
+          "r2_adj": 0.9597,
+          "intercept": -62.9858,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.0406,
+              "pvalue": 0.8951,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 0.9862,
+              "pvalue": 0.4881,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 2.6345,
+              "pvalue": 0.0013,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 1.809,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.029,
+              "pvalue": 0.0063,
+              "significant": true
+            }
+          }
+        },
+        "Latvia": {
+          "n_obs": 30,
+          "r2": 0.8954,
+          "r2_adj": 0.8736,
+          "intercept": -80.4583,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.7718,
+              "pvalue": 0.0001,
+              "significant": true
+            },
+            "ForestArea": {
+              "elasticity": 7.714,
+              "pvalue": 0.4275,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 3.4091,
+              "pvalue": 0.4474,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.0534,
+              "pvalue": 0.8564,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0108,
+              "pvalue": 0.7874,
+              "significant": false
+            }
+          }
+        },
+        "Lithuania": {
+          "n_obs": 30,
+          "r2": 0.684,
+          "r2_adj": 0.6182,
+          "intercept": 63.3644,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.2158,
+              "pvalue": 0.6203,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": -2.966,
+              "pvalue": 0.3461,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -3.8907,
+              "pvalue": 0.078,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.791,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0699,
+              "pvalue": 0.0004,
+              "significant": true
+            }
+          }
+        },
+        "Luxembourg": {
+          "n_obs": 22,
+          "r2": 0.8486,
+          "r2_adj": 0.8013,
+          "intercept": 85.4604,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -8.1752,
+              "pvalue": 0.0397,
+              "significant": true
+            },
+            "ForestArea": {
+              "elasticity": 5.9669,
+              "pvalue": 0.5454,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -6.1562,
+              "pvalue": 0.0827,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 0.72,
+              "pvalue": 0.3094,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.1128,
+              "pvalue": 0.1457,
+              "significant": false
+            }
+          }
+        },
+        "Malta": {
+          "n_obs": 32,
+          "r2": 0.6932,
+          "r2_adj": 0.6342,
+          "intercept": 61.1336,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.5939,
+              "pvalue": 0.1044,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 0.3507,
+              "pvalue": 0.8244,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -3.8585,
+              "pvalue": 0.2011,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.8589,
+              "pvalue": 0.1056,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0508,
+              "pvalue": 0.0972,
+              "significant": true
+            }
+          }
+        },
+        "Netherlands": {
+          "n_obs": 32,
+          "r2": 0.7198,
+          "r2_adj": 0.6659,
+          "intercept": -0.2911,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -1.4773,
+              "pvalue": 0.1181,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 2.5291,
+              "pvalue": 0.0076,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -0.0332,
+              "pvalue": 0.9896,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.5597,
+              "pvalue": 0.1818,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0217,
+              "pvalue": 0.0049,
+              "significant": true
+            }
+          }
+        },
+        "Norway": {
+          "n_obs": 32,
+          "r2": 0.8691,
+          "r2_adj": 0.844,
+          "intercept": -40.3921,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.1312,
+              "pvalue": 0.5399,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": -10.2682,
+              "pvalue": 0.0637,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": 4.3954,
+              "pvalue": 0.0016,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 1.1177,
+              "pvalue": 0.0128,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0417,
+              "pvalue": 0.0196,
+              "significant": true
+            }
+          }
+        },
+        "Poland": {
+          "n_obs": 32,
+          "r2": 0.5408,
+          "r2_adj": 0.4525,
+          "intercept": 1.5701,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.3956,
+              "pvalue": 0.611,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 9.3909,
+              "pvalue": 0.5007,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -1.562,
+              "pvalue": 0.6094,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.2235,
+              "pvalue": 0.398,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0149,
+              "pvalue": 0.5918,
+              "significant": false
+            }
+          }
+        },
+        "Portugal": {
+          "n_obs": 32,
+          "r2": 0.832,
+          "r2_adj": 0.7997,
+          "intercept": 16.7365,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.5166,
+              "pvalue": 0.4065,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": -5.3709,
+              "pvalue": 0.1366,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -0.4537,
+              "pvalue": 0.8198,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 1.6046,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0229,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Romania": {
+          "n_obs": 32,
+          "r2": 0.9572,
+          "r2_adj": 0.949,
+          "intercept": -65.821,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.1382,
+              "pvalue": 0.8596,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 0.5869,
+              "pvalue": 0.4249,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": 3.4563,
+              "pvalue": 0.0404,
+              "significant": true
+            },
+            "GDP_PC": {
+              "elasticity": 1.0944,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0393,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Slovenia": {
+          "n_obs": 30,
+          "r2": 0.88,
+          "r2_adj": 0.855,
+          "intercept": 18.4902,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.1287,
+              "pvalue": 0.1785,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 3.032,
+              "pvalue": 0.0673,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -2.5553,
+              "pvalue": 0.2298,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 0.8652,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0196,
+              "pvalue": 0.0025,
+              "significant": true
+            }
+          }
+        },
+        "Spain": {
+          "n_obs": 32,
+          "r2": 0.9538,
+          "r2_adj": 0.9449,
+          "intercept": -28.0693,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": -0.138,
+              "pvalue": 0.8887,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": 1.0701,
+              "pvalue": 0.0005,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": 0.7577,
+              "pvalue": 0.1816,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 1.6993,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0341,
+              "pvalue": 0.0,
+              "significant": true
+            }
+          }
+        },
+        "Sweden": {
+          "n_obs": 32,
+          "r2": 0.9641,
+          "r2_adj": 0.9572,
+          "intercept": -195.8113,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 1.0388,
+              "pvalue": 0.0064,
+              "significant": true
+            },
+            "ForestArea": {
+              "elasticity": 48.1561,
+              "pvalue": 0.0,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": -0.2536,
+              "pvalue": 0.8234,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.1994,
+              "pvalue": 0.5779,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": 0.0006,
+              "pvalue": 0.9637,
+              "significant": false
+            }
+          }
+        },
+        "Switzerland": {
+          "n_obs": 32,
+          "r2": 0.9031,
+          "r2_adj": 0.8845,
+          "intercept": -221.5935,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 27.1881,
+              "pvalue": 0.0133,
+              "significant": true
+            },
+            "ForestArea": {
+              "elasticity": 33.8191,
+              "pvalue": 0.005,
+              "significant": true
+            },
+            "Population": {
+              "elasticity": 0.6525,
+              "pvalue": 0.6704,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": -0.051,
+              "pvalue": 0.9127,
+              "significant": false
+            },
+            "trend": {
+              "elasticity": -0.0609,
+              "pvalue": 0.2255,
+              "significant": false
+            }
+          }
+        },
+        "United Kingdom": {
+          "n_obs": 32,
+          "r2": 0.9306,
+          "r2_adj": 0.9172,
+          "intercept": 21.2099,
+          "elasticities": {
+            "AgriLand": {
+              "elasticity": 0.3217,
+              "pvalue": 0.6903,
+              "significant": false
+            },
+            "ForestArea": {
+              "elasticity": -1.6011,
+              "pvalue": 0.7115,
+              "significant": false
+            },
+            "Population": {
+              "elasticity": -1.3392,
+              "pvalue": 0.6773,
+              "significant": false
+            },
+            "GDP_PC": {
+              "elasticity": 1.1007,
+              "pvalue": 0.0348,
+              "significant": true
+            },
+            "trend": {
+              "elasticity": -0.0178,
+              "pvalue": 0.505,
+              "significant": false
+            }
+          }
+        }
+      },
+      "pooled_fe": {
+        "AgriLand": {
+          "elasticity": -0.0884,
+          "pvalue": 0.2057,
+          "significant": false
+        },
+        "ForestArea": {
+          "elasticity": -0.3545,
+          "pvalue": 0.0468,
+          "significant": true
+        },
+        "Population": {
+          "elasticity": 0.7849,
+          "pvalue": 0.0,
+          "significant": true
+        },
+        "GDP_PC": {
+          "elasticity": 0.3911,
+          "pvalue": 0.0,
+          "significant": true
+        },
+        "trend": {
+          "elasticity": -0.0168,
+          "pvalue": 0.0,
+          "significant": true
+        }
+      },
+      "summary": {
+        "n_countries_estimated": 29,
+        "n_skipped": 0,
+        "mean_r2": 0.8535,
+        "min_r2": 0.3352,
+        "max_r2": 0.9668
+      }
+    }
+  }
+}
