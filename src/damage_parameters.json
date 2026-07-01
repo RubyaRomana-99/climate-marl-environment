@@ -1,0 +1,633 @@
+{
+  "model": "hazard_model_B_temperature_plus_vegetation",
+  "beta_temp": 0.2499,
+  "rate_multiplier_per_degree": 1.284,
+  "forest_coef": -0.9486,
+  "agri_coef": -0.8307,
+  "forest_mean": 33.2567,
+  "forest_std": 16.6215,
+  "agri_mean": 42.6955,
+  "agri_std": 18.5274,
+  "event_threshold": "loss > 0.01% of GDP",
+  "countries": {
+    "Austria": {
+      "alpha": -0.4448,
+      "forest": 46.65,
+      "agri": 34.89,
+      "forest_z": 0.806,
+      "agri_z": -0.4212,
+      "veg_term": -0.4146,
+      "baseline_annual_rate": 0.4234,
+      "severity": {
+        "mu": 6.4019,
+        "sigma": 0.8134,
+        "n_events": 23
+      },
+      "hazard_shares": {
+        "Hydrological": 0.6154,
+        "Meteorological": 0.2124,
+        "Climatological (heatwaves)": 0.0858,
+        "Climatological (other)": 0.0863
+      },
+      "annual_damage_euro_std": 782.72,
+      "annual_damage_reward_std": 0.4789
+    },
+    "Belgium": {
+      "alpha": -1.6951,
+      "forest": 22.53,
+      "agri": 44.8,
+      "forest_z": -0.6451,
+      "agri_z": 0.1136,
+      "veg_term": 0.5176,
+      "baseline_annual_rate": 0.308,
+      "severity": {
+        "mu": 5.9147,
+        "sigma": 1.2947,
+        "n_events": 16
+      },
+      "hazard_shares": {
+        "Hydrological": 0.6646,
+        "Meteorological": 0.3198,
+        "Climatological (heatwaves)": 0.0156,
+        "Climatological (other)": 0.0
+      },
+      "annual_damage_euro_std": 1741.3,
+      "annual_damage_reward_std": 1.0653
+    },
+    "Bulgaria": {
+      "alpha": -1.2071,
+      "forest": 33.02,
+      "agri": 50.88,
+      "forest_z": -0.0141,
+      "agri_z": 0.4418,
+      "veg_term": -0.3536,
+      "baseline_annual_rate": 0.21,
+      "severity": {
+        "mu": 4.5138,
+        "sigma": 2.1858,
+        "n_events": 12
+      },
+      "hazard_shares": {
+        "Hydrological": 0.8676,
+        "Meteorological": 0.1183,
+        "Climatological (heatwaves)": 0.0,
+        "Climatological (other)": 0.0141
+      },
+      "annual_damage_euro_std": 475.65,
+      "annual_damage_reward_std": 0.291
+    },
+    "Croatia": {
+      "alpha": -1.7027,
+      "forest": 34.06,
+      "agri": 27.9,
+      "forest_z": 0.0485,
+      "agri_z": -0.7983,
+      "veg_term": 0.6172,
+      "baseline_annual_rate": 0.3377,
+      "severity": {
+        "mu": 4.604,
+        "sigma": 1.8076,
+        "n_events": 17
+      },
+      "hazard_shares": {
+        "Hydrological": 0.4608,
+        "Meteorological": 0.1067,
+        "Climatological (heatwaves)": 0.4133,
+        "Climatological (other)": 0.0192
+      },
+      "annual_damage_euro_std": 231.56,
+      "annual_damage_reward_std": 0.1417
+    },
+    "Cyprus": {
+      "alpha": -4.2592,
+      "forest": 18.45,
+      "agri": 15.57,
+      "forest_z": -0.8907,
+      "agri_z": -1.4638,
+      "veg_term": 2.0609,
+      "baseline_annual_rate": 0.111,
+      "severity": {
+        "mu": 3.2185,
+        "sigma": 1.7768,
+        "n_events": 6
+      },
+      "hazard_shares": {
+        "Hydrological": 0.0,
+        "Meteorological": 0.0959,
+        "Climatological (heatwaves)": 0.8911,
+        "Climatological (other)": 0.0131
+      },
+      "annual_damage_euro_std": 42.68,
+      "annual_damage_reward_std": 0.0261
+    },
+    "Czechia": {
+      "alpha": -0.521,
+      "forest": 34.37,
+      "agri": 48.71,
+      "forest_z": 0.0668,
+      "agri_z": 0.3245,
+      "veg_term": -0.333,
+      "baseline_annual_rate": 0.4257,
+      "severity": {
+        "mu": 5.8683,
+        "sigma": 1.4827,
+        "n_events": 22
+      },
+      "hazard_shares": {
+        "Hydrological": 0.8123,
+        "Meteorological": 0.1327,
+        "Climatological (heatwaves)": 0.037,
+        "Climatological (other)": 0.018
+      },
+      "annual_damage_euro_std": 1217.26,
+      "annual_damage_reward_std": 0.7447
+    },
+    "Denmark": {
+      "alpha": -1.2846,
+      "forest": 14.66,
+      "agri": 67.68,
+      "forest_z": -1.1189,
+      "agri_z": 1.3486,
+      "veg_term": -0.0588,
+      "baseline_annual_rate": 0.2609,
+      "severity": {
+        "mu": 5.5842,
+        "sigma": 1.3466,
+        "n_events": 14
+      },
+      "hazard_shares": {
+        "Hydrological": 0.2203,
+        "Meteorological": 0.6592,
+        "Climatological (heatwaves)": 0.1205,
+        "Climatological (other)": 0.0
+      },
+      "annual_damage_euro_std": 679.45,
+      "annual_damage_reward_std": 0.4157
+    },
+    "Estonia": {
+      "alpha": -1.97,
+      "forest": 54.55,
+      "agri": 22.92,
+      "forest_z": 1.2812,
+      "agri_z": -1.0671,
+      "veg_term": -0.3289,
+      "baseline_annual_rate": 0.1004,
+      "severity": {
+        "mu": 3.3654,
+        "sigma": 1.548,
+        "n_events": 5
+      },
+      "hazard_shares": {
+        "Hydrological": 0.0028,
+        "Meteorological": 0.9403,
+        "Climatological (heatwaves)": 0.0568,
+        "Climatological (other)": 0.0
+      },
+      "annual_damage_euro_std": 38.45,
+      "annual_damage_reward_std": 0.0235
+    },
+    "Finland": {
+      "alpha": -1.0866,
+      "forest": 73.29,
+      "agri": 7.61,
+      "forest_z": 2.4083,
+      "agri_z": -1.8938,
+      "veg_term": -0.7113,
+      "baseline_annual_rate": 0.1657,
+      "severity": {
+        "mu": 4.8119,
+        "sigma": 1.2698,
+        "n_events": 9
+      },
+      "hazard_shares": {
+        "Hydrological": 0.2353,
+        "Meteorological": 0.2023,
+        "Climatological (heatwaves)": 0.0,
+        "Climatological (other)": 0.5623
+      },
+      "annual_damage_euro_std": 210.51,
+      "annual_damage_reward_std": 0.1288
+    },
+    "France": {
+      "alpha": 0.0957,
+      "forest": 29.67,
+      "agri": 55.29,
+      "forest_z": -0.216,
+      "agri_z": 0.68,
+      "veg_term": -0.36,
+      "baseline_annual_rate": 0.7677,
+      "severity": {
+        "mu": 7.6449,
+        "sigma": 1.0463,
+        "n_events": 41
+      },
+      "hazard_shares": {
+        "Hydrological": 0.3192,
+        "Meteorological": 0.3961,
+        "Climatological (heatwaves)": 0.1711,
+        "Climatological (other)": 0.1135
+      },
+      "annual_damage_euro_std": 3573.24,
+      "annual_damage_reward_std": 2.1861
+    },
+    "Germany": {
+      "alpha": -0.1052,
+      "forest": 32.6,
+      "agri": 49.42,
+      "forest_z": -0.0393,
+      "agri_z": 0.3628,
+      "veg_term": -0.2641,
+      "baseline_annual_rate": 0.6912,
+      "severity": {
+        "mu": 7.7842,
+        "sigma": 1.2363,
+        "n_events": 37
+      },
+      "hazard_shares": {
+        "Hydrological": 0.4282,
+        "Meteorological": 0.4265,
+        "Climatological (heatwaves)": 0.117,
+        "Climatological (other)": 0.0283
+      },
+      "annual_damage_euro_std": 7158.47,
+      "annual_damage_reward_std": 4.3795
+    },
+    "Greece": {
+      "alpha": -0.4789,
+      "forest": 28.82,
+      "agri": 61.86,
+      "forest_z": -0.2666,
+      "agri_z": 1.0345,
+      "veg_term": -0.6064,
+      "baseline_annual_rate": 0.3378,
+      "severity": {
+        "mu": 5.8715,
+        "sigma": 1.4453,
+        "n_events": 22
+      },
+      "hazard_shares": {
+        "Hydrological": 0.36,
+        "Meteorological": 0.2028,
+        "Climatological (heatwaves)": 0.1506,
+        "Climatological (other)": 0.2866
+      },
+      "annual_damage_euro_std": 896.8,
+      "annual_damage_reward_std": 0.5487
+    },
+    "Hungary": {
+      "alpha": -0.6462,
+      "forest": 21.87,
+      "agri": 65.33,
+      "forest_z": -0.6852,
+      "agri_z": 1.2219,
+      "veg_term": -0.365,
+      "baseline_annual_rate": 0.3638,
+      "severity": {
+        "mu": 4.9606,
+        "sigma": 1.7879,
+        "n_events": 22
+      },
+      "hazard_shares": {
+        "Hydrological": 0.3269,
+        "Meteorological": 0.0366,
+        "Climatological (heatwaves)": 0.6364,
+        "Climatological (other)": 0.0001
+      },
+      "annual_damage_euro_std": 683.59,
+      "annual_damage_reward_std": 0.4182
+    },
+    "Ireland": {
+      "alpha": -1.0587,
+      "forest": 9.71,
+      "agri": 65.61,
+      "forest_z": -1.4166,
+      "agri_z": 1.237,
+      "veg_term": 0.3162,
+      "baseline_annual_rate": 0.4759,
+      "severity": {
+        "mu": 4.902,
+        "sigma": 0.9614,
+        "n_events": 24
+      },
+      "hazard_shares": {
+        "Hydrological": 0.372,
+        "Meteorological": 0.628,
+        "Climatological (heatwaves)": 0.0,
+        "Climatological (other)": 0.0
+      },
+      "annual_damage_euro_std": 172.5,
+      "annual_damage_reward_std": 0.1055
+    },
+    "Italy": {
+      "alpha": -0.141,
+      "forest": 29.62,
+      "agri": 50.97,
+      "forest_z": -0.219,
+      "agri_z": 0.4464,
+      "veg_term": -0.1631,
+      "baseline_annual_rate": 0.7378,
+      "severity": {
+        "mu": 7.5239,
+        "sigma": 1.1382,
+        "n_events": 41
+      },
+      "hazard_shares": {
+        "Hydrological": 0.5382,
+        "Meteorological": 0.1423,
+        "Climatological (heatwaves)": 0.2299,
+        "Climatological (other)": 0.0897
+      },
+      "annual_damage_euro_std": 4460.3,
+      "annual_damage_reward_std": 2.7288
+    },
+    "Latvia": {
+      "alpha": -1.3708,
+      "forest": 53.36,
+      "agri": 30.25,
+      "forest_z": 1.2092,
+      "agri_z": -0.6716,
+      "veg_term": -0.5891,
+      "baseline_annual_rate": 0.1409,
+      "severity": {
+        "mu": 4.2886,
+        "sigma": 1.6385,
+        "n_events": 7
+      },
+      "hazard_shares": {
+        "Hydrological": 0.4512,
+        "Meteorological": 0.4558,
+        "Climatological (heatwaves)": 0.0,
+        "Climatological (other)": 0.093
+      },
+      "annual_damage_euro_std": 109.35,
+      "annual_damage_reward_std": 0.0669
+    },
+    "Lithuania": {
+      "alpha": -1.3046,
+      "forest": 33.63,
+      "agri": 47.77,
+      "forest_z": 0.0224,
+      "agri_z": 0.2737,
+      "veg_term": -0.2487,
+      "baseline_annual_rate": 0.2116,
+      "severity": {
+        "mu": 4.1798,
+        "sigma": 1.9585,
+        "n_events": 11
+      },
+      "hazard_shares": {
+        "Hydrological": 0.4082,
+        "Meteorological": 0.065,
+        "Climatological (heatwaves)": 0.3793,
+        "Climatological (other)": 0.1475
+      },
+      "annual_damage_euro_std": 221.07,
+      "annual_damage_reward_std": 0.1352
+    },
+    "Luxembourg": {
+      "alpha": -1.2699,
+      "forest": 34.28,
+      "agri": 50.71,
+      "forest_z": 0.0613,
+      "agri_z": 0.4323,
+      "veg_term": -0.4173,
+      "baseline_annual_rate": 0.185,
+      "severity": {
+        "mu": 3.9143,
+        "sigma": 1.4267,
+        "n_events": 10
+      },
+      "hazard_shares": {
+        "Hydrological": 0.2051,
+        "Meteorological": 0.7949,
+        "Climatological (heatwaves)": 0.0,
+        "Climatological (other)": 0.0
+      },
+      "annual_damage_euro_std": 130.55,
+      "annual_damage_reward_std": 0.0799
+    },
+    "Malta": {
+      "alpha": -4.7971,
+      "forest": 1.16,
+      "agri": 34.02,
+      "forest_z": -1.9308,
+      "agri_z": -0.4684,
+      "veg_term": 2.2206,
+      "baseline_annual_rate": 0.076,
+      "severity": {
+        "mu": 1.9131,
+        "sigma": 1.8092,
+        "n_events": 4,
+        "pooled": true
+      },
+      "hazard_shares": {
+        "Hydrological": 0.6341,
+        "Meteorological": 0.3659,
+        "Climatological (heatwaves)": 0.0,
+        "Climatological (other)": 0.0
+      },
+      "annual_damage_euro_std": 8.58,
+      "annual_damage_reward_std": 0.0053
+    },
+    "Netherlands": {
+      "alpha": -1.674,
+      "forest": 10.76,
+      "agri": 57.09,
+      "forest_z": -1.3533,
+      "agri_z": 0.7769,
+      "veg_term": 0.6384,
+      "baseline_annual_rate": 0.355,
+      "severity": {
+        "mu": 6.0315,
+        "sigma": 1.0442,
+        "n_events": 19
+      },
+      "hazard_shares": {
+        "Hydrological": 0.1463,
+        "Meteorological": 0.8536,
+        "Climatological (heatwaves)": 0.0001,
+        "Climatological (other)": 0.0
+      },
+      "annual_damage_euro_std": 595.44,
+      "annual_damage_reward_std": 0.3643
+    },
+    "Norway": {
+      "alpha": -2.4809,
+      "forest": 33.23,
+      "agri": 2.75,
+      "forest_z": -0.0018,
+      "agri_z": -2.156,
+      "veg_term": 1.7928,
+      "baseline_annual_rate": 0.5025,
+      "severity": {
+        "mu": 4.7065,
+        "sigma": 0.8942,
+        "n_events": 26
+      },
+      "hazard_shares": {
+        "Hydrological": 0.2911,
+        "Meteorological": 0.7078,
+        "Climatological (heatwaves)": 0.0002,
+        "Climatological (other)": 0.0009
+      },
+      "annual_damage_euro_std": 150.42,
+      "annual_damage_reward_std": 0.092
+    },
+    "Poland": {
+      "alpha": -0.6927,
+      "forest": 30.11,
+      "agri": 55.06,
+      "forest_z": -0.1895,
+      "agri_z": 0.6676,
+      "veg_term": -0.3748,
+      "baseline_annual_rate": 0.3439,
+      "severity": {
+        "mu": 6.2431,
+        "sigma": 1.5769,
+        "n_events": 20
+      },
+      "hazard_shares": {
+        "Hydrological": 0.9143,
+        "Meteorological": 0.0301,
+        "Climatological (heatwaves)": 0.0516,
+        "Climatological (other)": 0.0041
+      },
+      "annual_damage_euro_std": 1490.46,
+      "annual_damage_reward_std": 0.9119
+    },
+    "Portugal": {
+      "alpha": -0.8708,
+      "forest": 36.09,
+      "agri": 42.02,
+      "forest_z": 0.1705,
+      "agri_z": -0.0367,
+      "veg_term": -0.1312,
+      "baseline_annual_rate": 0.3671,
+      "severity": {
+        "mu": 6.0349,
+        "sigma": 1.4802,
+        "n_events": 18
+      },
+      "hazard_shares": {
+        "Hydrological": 0.132,
+        "Meteorological": 0.1227,
+        "Climatological (heatwaves)": 0.2846,
+        "Climatological (other)": 0.4606
+      },
+      "annual_damage_euro_std": 917.62,
+      "annual_damage_reward_std": 0.5614
+    },
+    "Romania": {
+      "alpha": -0.2196,
+      "forest": 28.62,
+      "agri": 62.2,
+      "forest_z": -0.2788,
+      "agri_z": 1.053,
+      "veg_term": -0.6103,
+      "baseline_annual_rate": 0.4361,
+      "severity": {
+        "mu": 5.9711,
+        "sigma": 1.6119,
+        "n_events": 25
+      },
+      "hazard_shares": {
+        "Hydrological": 0.6278,
+        "Meteorological": 0.0034,
+        "Climatological (heatwaves)": 0.3543,
+        "Climatological (other)": 0.0145
+      },
+      "annual_damage_euro_std": 1011.28,
+      "annual_damage_reward_std": 0.6187
+    },
+    "Slovenia": {
+      "alpha": 0.2762,
+      "forest": 61.27,
+      "agri": 28.08,
+      "forest_z": 1.6856,
+      "agri_z": -0.789,
+      "veg_term": -0.9436,
+      "baseline_annual_rate": 0.5131,
+      "severity": {
+        "mu": 5.1519,
+        "sigma": 1.4506,
+        "n_events": 28
+      },
+      "hazard_shares": {
+        "Hydrological": 0.8008,
+        "Meteorological": 0.0895,
+        "Climatological (heatwaves)": 0.097,
+        "Climatological (other)": 0.0127
+      },
+      "annual_damage_euro_std": 1546.77,
+      "annual_damage_reward_std": 0.9463
+    },
+    "Spain": {
+      "alpha": 0.4519,
+      "forest": 34.79,
+      "agri": 57.71,
+      "forest_z": 0.092,
+      "agri_z": 0.8105,
+      "veg_term": -0.7605,
+      "baseline_annual_rate": 0.7344,
+      "severity": {
+        "mu": 7.1647,
+        "sigma": 1.417,
+        "n_events": 40
+      },
+      "hazard_shares": {
+        "Hydrological": 0.4616,
+        "Meteorological": 0.1566,
+        "Climatological (heatwaves)": 0.2548,
+        "Climatological (other)": 0.127
+      },
+      "annual_damage_euro_std": 3926.61,
+      "annual_damage_reward_std": 2.4023
+    },
+    "Sweden": {
+      "alpha": -1.4078,
+      "forest": 68.91,
+      "agri": 7.92,
+      "forest_z": 2.1448,
+      "agri_z": -1.8768,
+      "veg_term": -0.4755,
+      "baseline_annual_rate": 0.1521,
+      "severity": {
+        "mu": 5.2164,
+        "sigma": 1.1617,
+        "n_events": 8
+      },
+      "hazard_shares": {
+        "Hydrological": 0.0509,
+        "Meteorological": 0.8925,
+        "Climatological (heatwaves)": 0.0,
+        "Climatological (other)": 0.0566
+      },
+      "annual_damage_euro_std": 412.29,
+      "annual_damage_reward_std": 0.2522
+    },
+    "Switzerland": {
+      "alpha": -0.8825,
+      "forest": 30.86,
+      "agri": 39.61,
+      "forest_z": -0.1443,
+      "agri_z": -0.1663,
+      "veg_term": 0.275,
+      "baseline_annual_rate": 0.5447,
+      "severity": {
+        "mu": 5.8608,
+        "sigma": 1.2054,
+        "n_events": 29
+      },
+      "hazard_shares": {
+        "Hydrological": 0.5548,
+        "Meteorological": 0.4253,
+        "Climatological (heatwaves)": 0.0195,
+        "Climatological (other)": 0.0004
+      },
+      "annual_damage_euro_std": 1055.12,
+      "annual_damage_reward_std": 0.6455
+    }
+  },
+  "reward_normalizer": 1634.54,
+  "reward_reference_temp": 1.5
+}
