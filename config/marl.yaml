@@ -13,6 +13,8 @@ marl:
   environment:
     num_agents: 4
     country_names: ["Germany", "Poland", "Spain", "Sweden"]
+    use_empirical_damage: true
+    damage_seed: 0
     baseline_emission_shares: [0.53, 0.26, 0.18, 0.03] # Note: Normalized actual shares; [0.2753, 0.1330, 0.0957, 0.0166]
     horizon: 35
     rollout_length: 15

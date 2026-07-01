@@ -68,6 +68,8 @@ def load_marl_setup(cfg):
     env_config = {
         "N": int(env_cfg["num_agents"]),
         "country_names": list(env_cfg.get("country_names", [])),
+        "use_empirical_damage": bool(env_cfg.get("use_empirical_damage", False)),
+        "damage_seed": int(env_cfg.get("damage_seed", 0)),
         "engine": general_cfg["climate_engine"],
         "horizon": int(env_cfg["horizon"]),
         "hist_end": int(cicero_cfg["em_data_policy"]),

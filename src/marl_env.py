@@ -1,4 +1,4 @@
-﻿from gymnasium import spaces
+from gymnasium import spaces
 from ray.rllib.env import MultiAgentEnv
 
 import sys
@@ -27,6 +27,12 @@ try:
     _CO2_PREDICTOR_AVAILABLE = True
 except ImportError:
     _CO2_PREDICTOR_AVAILABLE = False
+
+try:
+    from damage_sampler import sample_damage, sample_reward_damage
+    _DAMAGE_SAMPLER_AVAILABLE = True
+except ImportError:
+    _DAMAGE_SAMPLER_AVAILABLE = False
 
 
 class ClimateMARL(MultiAgentEnv):
@@ -169,6 +175,18 @@ class ClimateMARL(MultiAgentEnv):
         self.scm_params  = env_config.get("scm_params")
 
         self.country_names    = list(env_config.get("country_names", []))
+
+        self.use_empirical_damage = bool(env_config.get("use_empirical_damage", False))
+        self._damage_rng          = np.random.default_rng(int(env_config.get("damage_seed", 0)))
+        self._damage_normalizer   = 1.0
+        if self.use_empirical_damage:
+            if not _DAMAGE_SAMPLER_AVAILABLE:
+                raise ImportError("use_empirical_damage=True but damage_sampler is not importable")
+            _dp = os.path.join(CURR_DIR, "damage_parameters.json")
+            import json as _json
+            with open(_dp) as _f:
+                self._damage_normalizer = float(_json.load(_f).get("reward_normalizer", 1.0))
+
         self.country_states   = {}
         self.dynamic_co2      = np.zeros(self.N, dtype=np.float32)
         self.dynamic_gas_vector = np.zeros((self.N, len(CONTROLLED_GAS_NAMES)), dtype=np.float32)
@@ -298,6 +316,16 @@ class ClimateMARL(MultiAgentEnv):
         obs_vec = self._current_observation()
         return {agent: obs_vec.copy() for agent in self.agents}, {agent: {} for agent in self.agents}
 
+    def _compute_disaster_cost(self, T_next):
+        if self.use_empirical_damage and self.country_names:
+            cost = np.zeros(self.N, dtype=np.float32)
+            for i, country in enumerate(self.country_names):
+                dmg = sample_reward_damage(country, float(T_next), rng=self._damage_rng)
+                cost[i] = dmg * (1.0 - self.prevention_stock[i])
+            return cost
+        global_climate_cost = 0.003 * (T_next ** 4)
+        return global_climate_cost * self.climate_damage_costs * (1.0 - self.prevention_stock)
+
     def step(self, action_dict):
         idx = self.year_idx - (self.hist_end + 1)
 
@@ -386,9 +414,7 @@ class ClimateMARL(MultiAgentEnv):
         self._years_log.append(int(self.year_idx))
         self._E_global_log.append(emission_global.astype(np.float32))
 
-        phi                = 0.003
-        global_climate_cost = phi * (T_next ** 4)
-        agent_disaster_cost = global_climate_cost * self.climate_damage_costs * (1.0 - self.prevention_stock)
+        agent_disaster_cost = self._compute_disaster_cost(T_next)
         lever_cost          = np.sum(self.lever_costs * (lever_efforts ** 2), axis=1)
         adaptation_cost     = self.adaptation_costs * adaptation_selected
 
@@ -430,12 +456,7 @@ class ClimateMARL(MultiAgentEnv):
                 self._years_log.append(int(self.year_idx))
                 self._E_global_log.append(emission_global.astype(np.float32))
 
-                global_climate_cost  = phi * (T_next ** 4)
-                agent_disaster_cost  = (
-                    global_climate_cost
-                    * self.climate_damage_costs
-                    * (1.0 - self.prevention_stock)
-                )
+                agent_disaster_cost = self._compute_disaster_cost(T_next)
                 terminal_damage     += agent_disaster_cost * 1e-1
                 self.year_idx       += 1
 
