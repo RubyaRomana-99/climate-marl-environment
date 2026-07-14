@@ -1,4 +1,4 @@
-from gymnasium import spaces
+﻿from gymnasium import spaces
 from ray.rllib.env import MultiAgentEnv
 
 import sys
@@ -175,6 +175,10 @@ class ClimateMARL(MultiAgentEnv):
         self.scm_params  = env_config.get("scm_params")
 
         self.country_names    = list(env_config.get("country_names", []))
+
+        self.use_negotiation   = bool(env_config.get("use_negotiation", False))
+        self.agreements        = list(env_config.get("agreements", []))
+        self.agreement_penalty = float(env_config.get("agreement_penalty", 1.0))
 
         self.use_empirical_damage = bool(env_config.get("use_empirical_damage", False))
         self._damage_rng          = np.random.default_rng(int(env_config.get("damage_seed", 0)))
@@ -418,7 +422,20 @@ class ClimateMARL(MultiAgentEnv):
         lever_cost          = np.sum(self.lever_costs * (lever_efforts ** 2), axis=1)
         adaptation_cost     = self.adaptation_costs * adaptation_selected
 
-        r  = -(agent_disaster_cost + lever_cost + adaptation_cost)
+        negotiation_penalty = np.zeros(self.N, dtype=np.float32)
+        agreement_status    = {}
+        if self.use_negotiation:
+            for ag in self.agreements:
+                lever_idx = self.lever_names.index(ag["lever"])
+                threshold = float(ag["threshold"])
+                pen       = float(ag.get("penalty", self.agreement_penalty))
+                for country_i in ag["countries"]:
+                    honored = bool(lever_efforts[country_i, lever_idx] >= threshold)
+                    if not honored:
+                        negotiation_penalty[country_i] += pen
+                    agreement_status[(int(country_i), ag["lever"])] = honored
+
+        r  = -(agent_disaster_cost + lever_cost + adaptation_cost + negotiation_penalty)
         r *= 1e-1
 
         self.t        += 1
@@ -490,6 +507,14 @@ class ClimateMARL(MultiAgentEnv):
             for i, agent in enumerate(self.agents):
                 info_d[agent]["dynamic_co2_MtCO2eq"]   = float(self.dynamic_co2[i])
                 info_d[agent]["dynamic_gas_vector"]     = self.dynamic_gas_vector[i].tolist()
+
+        if self.use_negotiation:
+            for i, agent in enumerate(self.agents):
+                honored_list = [
+                    v for (ci, lv), v in agreement_status.items() if ci == i
+                ]
+                info_d[agent]["negotiation_penalty"] = float(negotiation_penalty[i])
+                info_d[agent]["agreement_honored"]   = honored_list
 
         term_d["__all__"]  = done
         trunc_d["__all__"] = False

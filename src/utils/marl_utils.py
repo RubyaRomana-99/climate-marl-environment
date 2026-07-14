@@ -83,6 +83,9 @@ def load_marl_setup(cfg):
         "rollout_length": int(env_cfg["rollout_length"]),
         "log_episode_trajectories": bool(general_cfg["log_episode_trajectories"]),
         "log_dir": general_cfg["log_dir"],
+        "use_negotiation": bool(env_cfg.get("use_negotiation", False)),
+        "agreements": list(env_cfg.get("agreements", [])),
+        "agreement_penalty": float(env_cfg.get("agreement_penalty", 1.0)),
     }
 
     timestamp = time.strftime("%Y%m%d_%H%M%S", time.localtime())
