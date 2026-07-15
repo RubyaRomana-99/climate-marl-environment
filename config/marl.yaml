@@ -1,8 +1,8 @@
 marl:
   general:
-    data_dir: data/20250930_223742
+    data_dir: data/20260702_145739
     climate_engine: net
-    training_run_id: 20260307_174513_gru_128_1
+    training_run_id: 20260704_145004_gru_128_1
     marl_run_name: heterogenous_agents
     log_episode_trajectories: True       # master ON/OFF switch
     log_dir: None #marl_logs             # where to save .npz files (optional; set None to skip saving to disk)
